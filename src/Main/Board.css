@@ -1,0 +1,10 @@
+.boardContainer {
+  background: url(/public/Image/background.png);
+  height: 80rem;
+  margin: 0;
+
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+}

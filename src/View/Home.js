@@ -1,6 +1,10 @@
+import Board from "../Main/Board";
+
 function Home() {
   return (
-    <div style={{ backgroundImage: `url(/Image/background.png)` }}>Home</div>
+    <div>
+      <Board />
+    </div>
   );
 }
 
