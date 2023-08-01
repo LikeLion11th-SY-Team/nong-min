@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans+KR:wght@500&display=swap");
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.navContainer {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* .logoContainer {
+  position: absolute;
+  top: 2.5rem;
+} */
+
+.navLogo {
+  color: #002d61;
+  text-decoration: none;
+
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.01125rem;
+}
+
+.menuContainer {
+  display: flex;
+  justify-content: space-between;
+
+  width: 60%;
+  text-align: center;
+
+  /* position: absolute;
+  top: 2.75rem; */
+}
+
+.navMenu {
+  color: #002d61;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.0075rem;
+}
+
+/*
+.dropDownContainer {
+  &:hover .dropDown {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #002d61;
+  }
+
+  .dropDown {
+    display: none;
+  }
+}
+
+.dropDownMenu {
+  color: #002d61;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.0075rem;
+  text-decoration: none;
+
+  display: none;
+
+  &:hover {
+    display: block;
+  }
+}
+*/
+
+.menuContainer:hover .dropDown {
+  display: block;
+}
+
+.dropDown {
+  display: none;
+}
+
+.dropDownMenu {
+  color: #002d61;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.12px;
+  text-decoration: none;
+}
+
+.login {
+  color: #002d61;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00675rem;
+}
