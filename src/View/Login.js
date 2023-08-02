@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { KAKAO_AUTH_URL } from "../API/KaKaoApi";
 
+import { styled } from "styled-components";
+
 function Login(){
     return(
-        <div>
-          
-
+        <LoginContainer>
             <form>
                 <input placeholder="아이디"></input>
                 <input placeholder="비밀번호"></input>
@@ -23,10 +23,18 @@ function Login(){
             </div>
 
             <a href={KAKAO_AUTH_URL}>
-                <img src="/Image/kakao_login_medium_narrow.png" alt="카카오 로그인 이미지"/>
+                <img src="/images/kakao_login_medium_narrow.png" alt="카카오 로그인 이미지"/>
             </a>
-        </div>
+        </LoginContainer>
     )
 }
 
 export default Login;
+
+const LoginContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`

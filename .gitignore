@@ -24,3 +24,4 @@ yarn-error.log*
 
 # login 관련
 KaKaoApi.js
+API.js
