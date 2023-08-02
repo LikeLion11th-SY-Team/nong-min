@@ -5,7 +5,7 @@
 }
 
 .boardImage {
-  background: url(/public/Image/background.png);
+  background: url(/public/images/background.png);
   height: 50rem; /*80rem*/
   margin: 0;
 

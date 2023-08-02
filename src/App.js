@@ -8,6 +8,7 @@ import Practice from "./View/Practice";
 import MyPage from "./View/MyPage";
 import Login from "./View/Login";
 import Landing from "./View/Landing";
+import SignUp from "./View/SignUp";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/practice" element={<Practice />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
     </div>

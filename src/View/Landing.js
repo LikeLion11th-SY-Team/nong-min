@@ -50,7 +50,7 @@ const Menu = styled.div`
   height: 38.8125rem;
 
   background-image: ${({ practice }) =>
-    practice ? "url(/images/practice.png)" : "url(/images/community.png)"};
+    practice ? `url(/images/practice.png)` : "url(/images/community.png)"};
   background-repeat: no-repeat;
   background-size: cover;
 
