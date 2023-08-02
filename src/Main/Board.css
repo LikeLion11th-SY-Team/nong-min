@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans+KR:wght@500&display=swap");
+
+.boardContainer {
+  height: 100%; /*edited*/
+}
+
+.boardImage {
+  background: url(/public/images/background.png);
+  height: 50rem; /*80rem*/
+  margin: 0;
+
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardInfo {
+  width: 38.9375rem;
+  height: 17.6875rem;
+
+  color: #002d61;
+  text-align: center;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+  font-size: 1.5625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 144.023%; /* 2.25038rem */
+  letter-spacing: -0.00938rem;
+}
+
+.boardTitle {
+  font-size: 1.875rem;
+  margin-top: 1rem;
+}

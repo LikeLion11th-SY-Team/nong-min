@@ -1,18 +1,32 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import './App.css';
-import Login from './View/Login';
-import LoginHandler from './Component/LoginHandler';
+import NavBar from "./Main/NavBar/NavBar";
+import Home from "./View/Home.js";
+import AboutUs from "./View/AboutUs";
+import Community from "./View/Community";
+import Practice from "./View/Practice";
+import MyPage from "./View/MyPage";
+import Login from "./View/Login";
+import Landing from "./View/Landing";
+import SignUp from "./View/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <Login />
-      <BrowserRouter>
+      <Router>
+        <NavBar />
         <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/practice" element={<Practice />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/login/oauth/callback/kakao" element={<LoginHandler/>} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
