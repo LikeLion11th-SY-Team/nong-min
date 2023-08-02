@@ -7,6 +7,7 @@ import Community from "./View/Community";
 import Practice from "./View/Practice";
 import MyPage from "./View/MyPage";
 import Login from "./View/Login";
+import Landing from "./View/Landing";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/home" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/community" element={<Community />} />
           <Route path="/practice" element={<Practice />} />

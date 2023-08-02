@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./NavBar.css";
 
 function NavBar() {
-  return (
+  const location = useLocation();
+  return location.pathname === "/" ? null : (
     <div className="navContainer">
       <div className="logoContainer">
-        <Link to={"/"} className="navLogo">
+        <Link to={"/home"} className="navLogo">
           로고
         </Link>
       </div>
