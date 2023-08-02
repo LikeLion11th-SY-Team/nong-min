@@ -11,6 +11,8 @@ import LoginHandler from "./Component/LoginHandler";
 import Landing from "./View/Landing";
 import SignUp from "./View/SignUp";
 
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
@@ -25,7 +27,10 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/login/oauth/callback/kakao" element={<LoginHandler/>} />
+          <Route
+            path="/login/oauth/callback/kakao"
+            element={<LoginHandler />}
+          />
         </Routes>
       </Router>
     </div>
