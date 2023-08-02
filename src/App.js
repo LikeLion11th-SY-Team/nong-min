@@ -24,6 +24,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login/oauth/callback/kakao" element={<LoginHandler/>} />
         </Routes>
       </Router>
     </div>
