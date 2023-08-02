@@ -7,6 +7,7 @@ import Community from "./View/Community";
 import Practice from "./View/Practice";
 import MyPage from "./View/MyPage";
 import Login from "./View/Login";
+import LoginHandler from "./Component/LoginHandler";
 import Landing from "./View/Landing";
 import SignUp from "./View/SignUp";
 
