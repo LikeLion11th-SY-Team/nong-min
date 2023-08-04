@@ -1,29 +1,44 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { ReactComponent as X } from "../close.svg";
 import styled from "styled-components";
-import "../Main/NavBar/NavBar.css";
 
 function Landing() {
   const navigate = useNavigate();
+  const [hover, setHover] = useState(0);
   return (
     <>
       <XButton onClick={() => navigate("/home")}>
         <X />
       </XButton>
       <MenuContainer>
-        <Menu practice={true} onClick={() => navigate("/practice")}>
+        <Menu
+          practice={true}
+          onClick={() => navigate("/practice")}
+          onMouseEnter={() => setHover(1)}
+          onMouseLeave={() => setHover(0)}
+        >
           <MenuName>학습공간</MenuName>
-          <MenuInfo>
-            전반적인 웹사이트 사용 방법을 <br /> 단계별로 쉽게 이해할 수 있게
-            도와줍니다.
-          </MenuInfo>
+          {hover === 1 ? (
+            <MenuInfo>
+              전반적인 웹사이트 사용 방법을 <br /> 단계별로 쉽게 이해할 수 있게
+              도와줍니다.
+            </MenuInfo>
+          ) : null}
         </Menu>
-        <Menu practice={false} onClick={() => navigate("/community")}>
+        <Menu
+          practice={false}
+          onClick={() => navigate("/community")}
+          onMouseEnter={() => setHover(2)}
+          onMouseLeave={() => setHover(0)}
+        >
           <MenuName>커뮤니티</MenuName>
-          <MenuInfo>
-            자유 게시판, 정보공유 게시판 등의 <br />
-            소통의 공간을 제공합니다.
-          </MenuInfo>
+          {hover === 2 ? (
+            <MenuInfo>
+              자유 게시판, 정보공유 게시판 등의 <br />
+              소통의 공간을 제공합니다.
+            </MenuInfo>
+          ) : null}
         </Menu>
       </MenuContainer>
     </>
@@ -35,6 +50,8 @@ const XButton = styled.div`
   height: 2.1875rem;
   margin-left: 1.5rem;
   margin-top: 1.5rem;
+
+  cursor: pointer;
 `;
 
 const MenuContainer = styled.div`
@@ -50,16 +67,16 @@ const Menu = styled.div`
   height: 38.8125rem;
 
   background-image: ${({ practice }) =>
-    practice ? `url(/images/practice.png)` : "url(/images/community.png)"};
+    practice ? `url(/images/practice.jpg)` : "url(/images/community.jpg)"};
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
   border-radius: ${({ practice }) =>
     practice ? "1.875rem 0rem 0rem 1.875rem;" : "0rem 1.875rem 1.875rem 0rem;"};
 
   color: ${({ practice }) => (practice ? "#002D61" : "#FFF")};
   text-align: center;
-  font-family: "Inter", "Noto Sans KR", sans-serif;
   font-size: 2.8125rem;
   font-style: normal;
   font-weight: 600;
