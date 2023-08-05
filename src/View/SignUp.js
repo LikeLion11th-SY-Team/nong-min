@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 import { styled } from "styled-components";
 
 function SignUp(){
-  const [formData, setFormData] = useState({
+  const [registerData, setRegisterData] = useState({
     id: "",
     pw: "",
     confirmPw: "",
@@ -15,17 +16,27 @@ function SignUp(){
     platformAddress: "",
     crop: "",
   });
-  const { id, pw, confirmPw, nickname, name, phoneNumber, emailId, platformAddress, crop } = formData;
+  const { id, pw, confirmPw, nickname, name, phoneNumber, emailId, platformAddress, crop } = registerData;
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    setFormData(prevData => ({
+    setRegisterData(prevData => ({
       ...prevData,
       [name]: value,
     }));
   }
 
-  const checkNickname = (event) => {
+  const [checkId, setCheckId] = useState(false);
+  const [checkNickname, setCheckNickname] = useState(false);
+  const onCheckId = (event) => {
+    event.preventDefault();
+    // 아이디 중복 확인 로직
+    try{
+      const res = await axios.post()
+    }
+  }
+
+  const onCheckNickname = (event) => {
     event.preventDefault();
     // 닉네임 중복 확인 로직
     
@@ -52,7 +63,7 @@ function SignUp(){
       return;
     }
 
-    // 닉네임 중복 확인 여부 확인하는 로직 추가
+    
 
     alert("회원가입이 완료되었습니다!");
     navigation('/home');
@@ -61,12 +72,15 @@ function SignUp(){
   return(
     <SignUpContainer>
         <form onSubmit={handleSubmit}>
-          <input 
-            name="id"
-            value={id}
-            onChange={onChange}
-            placeholder="아이디 입력(6-20자)"
-          />
+          <div>
+            <input 
+              name="id"
+              value={id}
+              onChange={onChange}
+              placeholder="아이디 입력(6-20자)"
+            />
+            <button onClick={onCheckId}>중복 확인</button>
+          </div>
           <input 
             name="pw"
             value={pw}
@@ -88,7 +102,7 @@ function SignUp(){
               onChange={onChange}
               placeholder="닉네임 입력"
             />
-            <button onClick={checkNickname}>중복 확인</button>
+            <button onClick={onCheckNickname}>중복 확인</button>
           </div>
           <input 
             name="name"
