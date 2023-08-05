@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { BaseUrl } from "../API/Api";
 
 import { styled } from "styled-components";
 
@@ -28,22 +29,46 @@ function SignUp(){
 
   const [checkId, setCheckId] = useState(false);
   const [checkNickname, setCheckNickname] = useState(false);
-  const onCheckId = (event) => {
+  const onCheckId = async (event) => {
     event.preventDefault();
     // 아이디 중복 확인 로직
+    /*
     try{
-      const res = await axios.post()
+      const res = await axios.post(`${BaseUrl/어쩌구}`, { id });
+      setCheckId(res.duplicated);
+      
+      if(checkId){
+        alert("중복된 아이디입니다. 다른 닉네임을 사용해주세요.")
+      } else{
+        alert("사용 가능한 아이디입니다.")
+      }
+    } catch(error){
+      alret("오류가 발생했습니다. 다시 시도해주세요.")
     }
+    */
   }
 
   const onCheckNickname = (event) => {
     event.preventDefault();
     // 닉네임 중복 확인 로직
-    
+    /*
+    try{
+      const res = await axios.post(`${BaseUrl/어쩌구}`, { nickname });
+      setCheckNickname(res.duplicated);
+      
+      if(checkNickname){
+        alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.")
+      } else{
+        alert("사용 가능한 닉네임입니다.")
+      }
+    } catch(error){
+      alret("오류가 발생했습니다. 다시 시도해주세요.")
+    }
+    */
   }
 
   const navigation = useNavigate();
-  const handleSubmit = (event) => { // 폼 데이터를 처리하는 로직
+  const handleSubmit = async (event) => { // 폼 데이터를 처리하는 로직
     event.preventDefault();
 
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/; // 비밀번호 정규식
@@ -62,12 +87,29 @@ function SignUp(){
       alert("필수정보(*)를 입력해주세요.");
       return;
     }
-
+    /*
+    try{
+      const res = await axios.post(${BaseUrl}/어쩌구, {
+        id,
+        pw,
+        nickname,
+        name,
+        phoneNumber,
+        email: fullEmail,
+        crop
+      });
     
-
-    alert("회원가입이 완료되었습니다!");
-    navigation('/home');
-  }
+      if(res.status === 200){
+        alert("회원가입이 완료되었습니다!");
+        navigation('/home');
+      } else{
+        alert("회원가입에 실패했습니다. 다시 시도해주세요.")
+      }
+    } catch(error){
+      alert("오류가 발생했습니다. 다시 시도해주세요.")
+    }
+    */
+  };
 
   return(
     <SignUpContainer>

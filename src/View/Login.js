@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { KAKAO_AUTH_URL } from "../API/KaKaoApi";
 
 import { styled } from "styled-components";
+import { BaseUrl } from "../API/Api";
 
 function Login(){
   const [check, setCheck] = useState(false);
@@ -19,14 +20,24 @@ function Login(){
   }
   const { id, pw } = loginData;
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
     if(!id || !pw){
       alert("아이디, 비밀번호를 입력해주세요.");
     }
     // 아이디, 비밀번호 유효성 검사 로직 추가
-    
+    /* 
+    try{
+      const res = await axios.post(`${BaseUrl/어쩌구}`, { id, pw }
+      ). then(
+        res => {
+          
+        });
+    } catch{
+
+    }
+    */
   }
 
   return(
