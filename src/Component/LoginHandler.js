@@ -10,12 +10,12 @@ function LoginHandler(props){
     const code = urlParams.get("code");
 
     useEffect(() => {
-      const kakaoLogin = async() => {
+      const kakaoLogin = async () => {
           await axios({
               method: "GET",
               url: `${REDIRECT_URI}/?code=${code}`,
               headers: {
-                  "Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 보내겠다는뜻
+                  "Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 전송
               },
           }).then((res) => {
               console.log(res);
