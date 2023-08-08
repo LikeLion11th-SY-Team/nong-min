@@ -26,13 +26,13 @@ function Login(){
     if(!id || !pw){
       alert("아이디, 비밀번호를 입력해주세요.");
     }
-    // 아이디, 비밀번호 유효성 검사 로직 추가
+    // 아이디, 비밀번호 유효성 검사 로직 추가 -> 백엔드 처리
     /* 
     try{
-      const res = await axios.post(`${BaseUrl/어쩌구}`, { id, pw }
+      const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw }
       ). then(
         res => {
-          
+          // 토큰 처리 로직 추가
         });
     } catch{
 
