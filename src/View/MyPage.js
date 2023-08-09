@@ -61,8 +61,10 @@ function MyPage() {
 }
 
 const Container = styled.div`
-  height: 100%;
+  height: 80rem;
   margin-bottom: 4.43rem;
+
+  position: relative;
 `;
 
 const BkImage = styled.div`
@@ -77,8 +79,13 @@ const BkImage = styled.div`
 
 const ItemsContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+
+  position: absolute;
+  top: 15.16rem;
+
+  left: 50%;
+  transform: translate(-50%);
 `;
 
 const OptionContainer = styled.div`
