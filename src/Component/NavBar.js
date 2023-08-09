@@ -42,10 +42,10 @@ function NavBar() {
           </DropDown>
         </div>
         <div className="userContainer">
-          <NavMenu to={"/mypage"}>마이페이지</NavMenu>
+          <NavMenu to={"/mypage"}>계정관리</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>개인정보 변경</DropDownMenu>
+              <DropDownMenu>마이페이지</DropDownMenu>
             </Li>
           </DropDown>
         </div>
