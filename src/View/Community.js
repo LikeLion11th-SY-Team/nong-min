@@ -1,11 +1,9 @@
-import CommunitySideBar from "../Community/CommunitySideBar";
-
 import { styled } from "styled-components";
 
 function Community() {
   return (
     <CommunityContainer>
-      <CommunitySideBar/>
+      
     </CommunityContainer>
   )
 }
