@@ -3,6 +3,7 @@ import { Link, useNavigate  } from "react-router-dom";
 import { KAKAO_AUTH_URL } from "../API/KaKaoApi";
 import { BaseUrl } from "../API/Api";
 import axios from "axios";
+import { setCookie } from "../API/Cookie";
 
 import { styled } from "styled-components";
 
@@ -28,9 +29,14 @@ function Login() {
       alert("아이디와 비밀번호를 입력해주세요.");
     }
     try {
+      // 로그인 시 쿠키에 토큰 저장
       const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw });
-      const accessToken = res.data.accessToken;
-      localStorage.setItem("accessToken", accessToken);
+      const accessToken = res.data.access;
+      const refreshToken = res.data.refresh;
+
+      // 모든 경로에서 토큰 접근 가능
+      setCookie("accessToken", accessToken, { path: "/" });
+      setCookie("refreshToken", refreshToken, { path: "/" });
       navigation("/home");
     } catch (err) {
       if (err.response && err.response.status === 401) {
