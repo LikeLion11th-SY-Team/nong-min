@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { KAKAO_AUTH_URL } from "../API/KaKaoApi";
+import { BaseUrl } from "../API/Api";
+import axios from "axios";
 
 import { styled } from "styled-components";
-import { BaseUrl } from "../API/Api";
 
-function Login(){
-  const [check, setCheck] = useState(false);
+function Login() {
   const [loginData, setLoginData] = useState({
-      id: "",
-      pw: ""
+    id: "",
+    pw: ""
   })
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -20,36 +20,37 @@ function Login(){
   }
   const { id, pw } = loginData;
 
+  const navigation = useNavigate();
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    if(!id || !pw){
-      alert("아이디, 비밀번호를 입력해주세요.");
+    if (!id || !pw) {
+      alert("아이디와 비밀번호를 입력해주세요.");
     }
-    // 아이디, 비밀번호 유효성 검사 로직 추가 -> 백엔드 처리
-    /* 
-    try{
-      const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw }
-      ). then(
-        res => {
-          // 토큰 처리 로직 추가
-        });
-    } catch{
-
+    try {
+      const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw });
+      const accessToken = res.data.accessToken;
+      localStorage.setItem("accessToken", accessToken);
+      navigation("/home");
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        alert("아이디와 비밀번호가 일치하지 않습니다.");
+      } else {
+        alert("로그인에 실패하였습니다. 다시 시도해주세요.");
+      }
     }
-    */
   }
 
-  return(
+  return (
     <LoginContainer>
-      <form onSubmit={onSubmit}>
+      <LoginForm onSubmit={onSubmit}>
         <input
           name="id"
           value={id}
           onChange={onChange}
           placeholder="아이디"
         />
-        <input 
+        <input
           name="pw"
           value={pw}
           onChange={onChange}
@@ -62,15 +63,15 @@ function Login(){
           />
         </label>
         <button type="submit">로그인</button>
-      </form>
-      
+      </LoginForm>
+
       <div>
         <Link to={'/signup'}>회원가입</Link>
         <Link to={'/find'}>아이디/비밀번호 찾기</Link>
       </div>
 
       <a href={KAKAO_AUTH_URL}>
-        <img src="/images/kakao_login_medium_narrow.png" alt="카카오 로그인 이미지"/>
+        <img src="/images/kakao_login_medium_narrow.png" alt="카카오 로그인 이미지" />
       </a>
     </LoginContainer>
   )
@@ -85,3 +86,7 @@ const LoginContainer = styled.div`
   align-items: center;
   height: 100vh;
 `
+const SignHandler = styled.div``
+const Switch2Login = styled.div``
+const Switch2SignUp = styled.div``
+const LoginForm = styled.form``
