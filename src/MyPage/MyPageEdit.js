@@ -3,16 +3,53 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BaseUrl } from "../API/Api";
 import { eventWrapper } from "@testing-library/user-event/dist/utils";
+import { getCookie } from "../API/Cookie";
 
 function EditData() {
+  /**사용자 기본 데이터 */
+  const accessToken = getCookie("accessToken");
+
+  const [user, setUser] = useState({
+    PrevId: "",
+    PrevNickname: "",
+    PrevPhone: "",
+    PrevEmail: "",
+  });
+  const { prevId, prevNickname, prevPhone, prevEmailId, prevAddress } = user;
+
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [checkNickname, setCheckNickname] = useState(false);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  async function getUser() {
+    await axios
+      .get(`${BaseUrl}/auth/api/userinfo/`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        /*  setRegisterData((data) => ({
+          ...data,
+          [PrevId]: res.data.id,
+        })); */
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   /**사용자 입력 데이터 */
   const [registerData, setRegisterData] = useState({
-    nickname: "",
-    phoneNumber: "",
+    nick_name: "",
+    phone_number: "",
     emailId: "",
     platformAddress: "",
   });
-  const { nickname, phoneNumber, emailId, platformAddress } = registerData;
+  const { nick_name, phone_number, emailId, platformAddress } = registerData;
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -22,37 +59,7 @@ function EditData() {
     }));
   };
 
-  /**사용자 기본 데이터 */
-  const [user, setUser] = useState({
-    id: "",
-    nick_name: "",
-    phone_number: "",
-    email: "",
-  });
-
-  const [nameError, setNameError] = useState(false);
-  const [phoneError, setPhoneError] = useState(false);
-
-  /* useEffect(() => {
-    getUser();
-  }, []);
-
-  async function getUser() {
-    await axios
-      .get(`${BaseUrl}/auth/api/get/userinfo/`,
-		    {
-        	params: {name: name},
-        	headers: {Authorization: token,},
-        }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } */
-
+  /**에러 확인 */
   const handlePhoneError = (e) => {
     const regex = /^[0-9]{0,11}$/;
     if (!regex.test(e.target.value)) {
@@ -64,17 +71,44 @@ function EditData() {
     e.preventDefault();
     try {
       const res = await axios.post(`${BaseUrl}/auth/api/check/nickname/`, {
-        nickname,
+        nick_name,
       });
 
       if (res.status === 200) {
         alert("사용 가능한 닉네임입니다.");
       } else {
         setNameError(true);
+        setCheckNickname(true);
         alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
       }
     } catch (error) {
       alert("오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const fullEmail = `${emailId}@${platformAddress}`;
+
+    if (nameError)
+      return alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
+    else if (phoneError)
+      return alert("전화번호를 ‘-’ 제외 11자리로 입력해주세요");
+    else if (!checkNickname) return alert("닉네임 중복확인을 해주세요.");
+    else {
+      try {
+        const response = await axios.patch(`${BaseUrl}/auth/userinfo/`, {
+          nick_name,
+          phone_number,
+          email: fullEmail,
+        });
+
+        if (response.status === 200) alert("수정이 완료되었습니다!");
+        else alert("수정에 실패했습니다. 다시 시도해주세요.");
+      } catch (error) {
+        alert("오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
 
@@ -91,9 +125,9 @@ function EditData() {
         </TitleContainer>
         <InputContainer>
           <Input
-            name="nickname"
+            name="nick_name"
             placeholder={user.nick_name}
-            value={nickname}
+            value={prevNickname}
             onChange={onChange}
           />
           <CheckBtn onClick={(e) => handleNicknameError(e)}>중복 확인</CheckBtn>
@@ -105,9 +139,9 @@ function EditData() {
           ) : null}
         </TitleContainer>
         <Input
-          name="phoneNumber"
+          name="phone_number"
           placeholder={user.phone_number}
-          value={phoneNumber}
+          value={prevPhone}
           onChange={onChange}
           onBlur={(e) => handlePhoneError(e)}
         />
@@ -116,7 +150,7 @@ function EditData() {
           <Input
             name="emailId"
             placeholder={user.email}
-            value={emailId}
+            value={prevEmailId}
             onChange={onChange}
             email="true"
           />
@@ -124,14 +158,14 @@ function EditData() {
           <Input
             name="platformAddress"
             placeholder={""}
-            value={platformAddress}
+            value={prevAddress}
             onChange={onChange}
             email="true"
           />
         </EmailContainer>
       </ContentContainer>
       <BtnContainer>
-        <EditBtn>수정하기</EditBtn>
+        <EditBtn onClick={handleSubmit}>수정하기</EditBtn>
       </BtnContainer>
     </BoardContainer>
   );
@@ -140,11 +174,11 @@ function EditData() {
 function EditPw() {
   /**사용자 입력 데이터 */
   const [registerData, setRegisterData] = useState({
-    pw: "",
-    confirmPw: "",
+    PrevPw: "",
     newPw: "",
+    confirmPw: "",
   });
-  const { pw, confirmPw, newPw } = registerData;
+  const { prevPw, newPw, confirmPw } = registerData;
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -155,36 +189,14 @@ function EditPw() {
   };
 
   /**사용자 기본 데이터 */
-  const [user, setUser] = useState({
-    pw: "",
-  });
+  const [pw, setUser] = useState("");
 
   const [oldError, setOldError] = useState(false);
   const [newError, setNewError] = useState(false);
   const [confirmError, setConfirmError] = useState(false);
 
-  /* useEffect(() => {
-    getUser();
-  }, []);
-
-  async function getUser() {
-    await axios
-      .get(`${BaseUrl}/auth/api/get/userinfo/`,
-		    {
-        	params: {name: name},
-        	headers: {Authorization: token,},
-        }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } */
-
   const handleOldError = (e) => {
-    if (user.pw !== pw) setOldError(true);
+    if (pw !== prevPw) setOldError(true);
   };
 
   const handleNewError = (e) => {
@@ -196,6 +208,30 @@ function EditPw() {
 
   const handleConfirmError = (e) => {
     if (newPw !== confirmPw) setConfirmError(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (oldError) return alert("기존 비밀번호와 일치하지 않습니다");
+    else if (newError)
+      return alert("비밀번호는 문자, 숫자 포함 8-20자로 입력해주세요");
+    else if (confirmError) return alert("비밀번호가 일치하지 않습니다");
+    else if (newPw === pw)
+      return alert("기존 비밀번호와 일치합니다. 새 비밀번호를 입력해주세요");
+    else {
+      try {
+        const response = await axios.post(
+          `${BaseUrl}/auth/userinfo/changepassword/`,
+          {}
+        );
+
+        if (response.status === 200) alert("수정이 완료되었습니다!");
+        else alert("수정에 실패했습니다. 다시 시도해주세요.");
+      } catch (error) {
+        alert("오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
   };
 
   return (
@@ -212,7 +248,7 @@ function EditPw() {
           ) : null}
         </TitleContainer>
         <Input
-          name="pw"
+          name="prevPw"
           placeholder="기존 비밀번호 입력"
           value={pw}
           onChange={onChange}
@@ -253,7 +289,7 @@ function EditPw() {
         />
       </ContentContainer>
       <BtnContainer>
-        <EditBtn>수정하기</EditBtn>
+        <EditBtn onClick={handleSubmit}>수정하기</EditBtn>
       </BtnContainer>
     </BoardContainer>
   );

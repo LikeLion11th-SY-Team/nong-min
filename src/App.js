@@ -53,14 +53,11 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/community/*" element={<Community />} />
-          <Route path="/practice" element={<Practice />} />
+          <Route path="/practice/*" element={<Practice />} />
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/login/oauth/callback/kakao"
-            element={<LoginHandler />}
-          />
+          <Route path="/auth/api/kakao-login/" element={<LoginHandler />} />
         </Routes>
       </Router>
     </div>
