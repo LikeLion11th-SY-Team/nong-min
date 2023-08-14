@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function Practice() {
   const navigate = useNavigate();
-  const [hover, setHover] = useState(0);
+  const [hover, setHover] = useState(1);
 
   return (
     <Container>
@@ -15,58 +15,58 @@ function Practice() {
             전반적인 웹사이트 사용 방법을
             <br /> 단계별로 쉽게 이해할 수 있게 도와줍니다.
           </Detail>
-          <Btn>자세히 →</Btn>
+          <Btn onClick={() => navigate("/practice/info")}>자세히 →</Btn>
         </TextContainer>
+
         <div>
           <SmallContainer>
             <Box
-              size="small"
+              op="info"
               hover={hover}
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/practice/info")}
               onMouseEnter={() => setHover(1)}
               onMouseLeave={() => setHover(0)}
             >
-              {hover === 1 ? (
-                <InfoContainer>
+              <BoxBk op="info">
+                {hover === 1 ? (
                   <IconContainer>
                     <Zoom src="/images/zoom.png" />
                   </IconContainer>
-                  <BoxInfo>학습공간 소개</BoxInfo>
-                </InfoContainer>
-              ) : null}
+                ) : null}
+              </BoxBk>
             </Box>
+
             <Box
-              size="small"
+              op="log"
               hover={hover}
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/practice/log")}
               onMouseEnter={() => setHover(2)}
               onMouseLeave={() => setHover(0)}
             >
-              {hover === 2 ? (
-                <InfoContainer>
+              <BoxBk op="log">
+                {hover === 2 ? (
                   <IconContainer>
                     <Zoom src="/images/zoom.png" />
                   </IconContainer>
-                  <BoxInfo>학습기록 보기</BoxInfo>
-                </InfoContainer>
-              ) : null}
+                ) : null}
+              </BoxBk>
             </Box>
           </SmallContainer>
+
           <Box
-            size="large"
+            op="exercise"
             hover={hover}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/practice/exercise")}
             onMouseEnter={() => setHover(3)}
             onMouseLeave={() => setHover(0)}
           >
-            {hover === 3 ? (
-              <InfoContainer>
+            <BoxBk op="exercise">
+              {hover === 3 ? (
                 <IconContainer>
                   <Zoom src="/images/zoom.png" />
                 </IconContainer>
-                <BoxInfo>학습하기</BoxInfo>
-              </InfoContainer>
-            ) : null}
+              ) : null}
+            </BoxBk>
           </Box>
         </div>
       </ContentsContainer>
@@ -127,6 +127,10 @@ const Btn = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 144.023%; /* 2.25038rem */
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SmallContainer = styled.div`
@@ -135,44 +139,50 @@ const SmallContainer = styled.div`
 `;
 
 const Box = styled.div`
-  width: ${({ size }) => (size === "small" ? "22.4375rem" : "45.8125rem")};
+  width: ${({ op }) => (op === "exercise" ? "45.8125rem" : "22.4375rem")};
   height: 13.75rem;
-  background-color: #002d61;
+  background: ${({ op }) =>
+    op === "info"
+      ? "url(images/practice_info.png)"
+      : op === "log"
+      ? "url(images/practice_log.png)"
+      : "url(images/practice_exercise.png)"};
+  background-size: cover;
   border-radius: 0.625rem;
+  box-shadow: 0px 7px 4px 0px rgba(0, 0, 0, 0.25);
 
   margin-top: 0.75rem;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+`;
+
+const BoxBk = styled.div`
+  width: ${({ op }) => (op === "exercise" ? "45.8125rem" : "22.4375rem")};
+  height: 13.75rem;
+  border-radius: 0.625rem;
+  background-color: #002d61;
+  opacity: 0;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
-    cursor: pointer;
+    opacity: 0.6;
   }
 `;
-
-const InfoContainer = styled.div``;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
-
-  margin-bottom: 1rem;
 `;
 
 const Zoom = styled.img`
   width: 2.5rem;
   height: 2.5rem;
-`;
-
-const BoxInfo = styled.div`
-  color: #fff;
-  text-align: center;
-  font-size: 1.5625rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 144.023%; /* 2.25038rem */
-  letter-spacing: -0.00938rem;
 `;
 
 export default Practice;
