@@ -20,13 +20,13 @@ function NavBar() {
           <NavMenu to={"/practice"}>학습공간</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>학습공간 소개</DropDownMenu>
+              <DropDownMenu to={"/practice/info"}>학습공간 소개</DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu>학습기록 보기</DropDownMenu>
+              <DropDownMenu to={"/practice/log"}>학습기록 보기</DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu>학습하기</DropDownMenu>
+              <DropDownMenu to={"/practice/exercise"}>학습하기</DropDownMenu>
             </Li>
           </DropDown>
         </div>

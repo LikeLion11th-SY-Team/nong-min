@@ -9,6 +9,7 @@ import Home from "./View/Home.js";
 import AboutUs from "./View/AboutUs";
 import Community from "./View/Community";
 import Practice from "./View/Practice";
+import Exercise from "./Practice/Exercise";
 import MyPage from "./View/MyPage";
 import Login from "./Component/Login";
 import LoginHandler from "./Component/LoginHandler";
@@ -54,6 +55,7 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/community" element={<Community />} />
           <Route path="/practice" element={<Practice />} />
+          <Route path="/practice/exercise" element={<Exercise />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
