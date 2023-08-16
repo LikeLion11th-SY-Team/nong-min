@@ -5,7 +5,8 @@ import styled from "styled-components";
 function NavBar() {
   const location = useLocation();
   const [hover, setHover] = useState(0);
-  return location.pathname === "/" ? null : (
+  return location.pathname === "/" ||
+    location.pathname === "/practice/log" ? null : (
     <NavContainer
       onMouseEnter={() => setHover(1)}
       onMouseLeave={() => setHover(0)}

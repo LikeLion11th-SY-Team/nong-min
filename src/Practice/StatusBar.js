@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 function StatusBar(props) {
-  console.log(props.step);
   return (
     <Container>
       <ItemsContainer>
@@ -17,8 +16,8 @@ function StatusBar(props) {
 
 const Container = styled.div`
   width: 75rem;
+  height: 8%;
   display: flex;
-  align-items: center;
 
   margin: 0 auto;
 `;

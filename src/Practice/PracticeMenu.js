@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ReactComponent as DropDown } from "../dropDown.svg";
-import { ReactComponent as DropUp } from "../dropUp.svg";
+import { ReactComponent as DropDown } from "../svg/dropDown.svg";
+import { ReactComponent as DropUp } from "../svg/dropUp.svg";
 import { useState } from "react";
 
 function PracticeMenu() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [step0, setStep0] = useState(false);
-  const [step2, setStep2] = useState(false);
-  const [step5, setStep5] = useState(false);
-  const [step6, setStep6] = useState(false);
+  const [step0, setStep0] = useState(true);
+  const [step2, setStep2] = useState(true);
+  const [step5, setStep5] = useState(true);
+  const [step6, setStep6] = useState(true);
 
   return (
     <Container>
@@ -27,7 +27,7 @@ function PracticeMenu() {
               <Icon>{step0 ? <DropUp /> : <DropDown />}</Icon>
             </StepContainer>
             <DropContainer drop={step0}>
-              <Menu>북마크 추가</Menu>
+              <Menu to={"/practice/exercise/step0"}>북마크 추가</Menu>
             </DropContainer>
           </MenuOption>
 
@@ -103,6 +103,7 @@ function PracticeMenu() {
 
 const Container = styled.div`
   width: 16rem;
+  height: 46rem;
 
   border-radius: 0.75rem;
   border: 1px solid #dee2e6;

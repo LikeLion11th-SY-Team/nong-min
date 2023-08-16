@@ -17,6 +17,7 @@ import Landing from "./View/Landing";
 import SignUp from "./Component/SignUp";
 
 import "./App.css";
+import Log from "./Practice/Log";
 
 function App() {
   useEffect(() => {
@@ -50,12 +51,13 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
+          <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/community" element={<Community />} />
           <Route path="/practice" element={<Practice />} />
-          <Route path="/practice/exercise" element={<Exercise />} />
+          <Route path="/practice/exercise/*" element={<Exercise />} />
+          <Route path="/practice/log" element={<Log />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

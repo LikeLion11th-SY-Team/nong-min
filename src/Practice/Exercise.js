@@ -2,15 +2,21 @@ import { Routes, Route } from "react-router-dom";
 import PracticeMenu from "./PracticeMenu";
 import styled from "styled-components";
 import StatusBar from "./StatusBar";
+import Step0 from "./Step0";
 
 function Exercise() {
+  const step = 0;
   return (
     <Container>
       <ItemsContainer>
         <PracticeMenu />
         <ContentsContainer>
-          <StatusBar step={1} />
-          <Contents></Contents>
+          <StatusBar step={step} />
+          <Contents>
+            <Routes>
+              <Route path="/0" element={<Step0 />} />
+            </Routes>
+          </Contents>
         </ContentsContainer>
       </ItemsContainer>
     </Container>
@@ -18,7 +24,8 @@ function Exercise() {
 }
 
 const Container = styled.div`
-  margin: 10rem 5% 0 5%;
+  padding: 10rem 5% 0 5%;
+  height: 100%;
 `;
 
 const ItemsContainer = styled.div`
@@ -32,11 +39,9 @@ const ContentsContainer = styled.div`
 
 const Contents = styled.div`
   width: 70rem;
-  height: 40rem;
-  margin: 0 auto;
-  margin-top: 7rem;
+  height: 100%;
 
-  background-color: #000;
+  margin: 0 auto;
 `;
 
 export default Exercise;
