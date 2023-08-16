@@ -16,6 +16,7 @@ import Landing from "./View/Landing";
 import SignUp from "./Component/SignUp";
 
 import "./App.css";
+import Sign from "./View/Sign";
 
 function App() {
   useEffect(() => {
@@ -57,7 +58,11 @@ function App() {
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/auth/api/kakao-login/" element={<LoginHandler />} />
+          <Route path="/sign" element={<Sign/>} />
+          <Route
+            path="/auth/api/kakao-login/"
+            element={<LoginHandler />}
+          />
         </Routes>
       </Router>
     </div>
