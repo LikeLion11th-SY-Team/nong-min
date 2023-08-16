@@ -17,6 +17,7 @@ import Landing from "./View/Landing";
 import SignUp from "./Component/SignUp";
 
 import "./App.css";
+import Sign from "./View/Sign";
 import Log from "./Practice/Log";
 
 function App() {
@@ -61,8 +62,9 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/sign" element={<Sign/>} />
           <Route
-            path="/login/oauth/callback/kakao"
+            path="/auth/api/kakao-login/"
             element={<LoginHandler />}
           />
         </Routes>

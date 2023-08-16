@@ -17,7 +17,7 @@ function NavBar() {
 
       <MenuContainer>
         <NavMenu to={"/aboutus"}>서비스 소개</NavMenu>
-        <div>
+        <DropContainer>
           <NavMenu to={"/practice"}>학습공간</NavMenu>
           <DropDown hover={hover}>
             <Li>
@@ -30,8 +30,8 @@ function NavBar() {
               <DropDownMenu to={"/practice/exercise"}>학습하기</DropDownMenu>
             </Li>
           </DropDown>
-        </div>
-        <div>
+        </DropContainer>
+        <DropContainer>
           <NavMenu to={"/community"}>커뮤니티</NavMenu>
           <DropDown hover={hover}>
             <Li>
@@ -41,34 +41,33 @@ function NavBar() {
               <DropDownMenu>정보공유 게시판</DropDownMenu>
             </Li>
           </DropDown>
-        </div>
-        <div className="userContainer">
+        </DropContainer>
+        <DropContainer className="userContainer">
           <NavMenu to={"/mypage"}>계정관리</NavMenu>
           <DropDown hover={hover}>
             <Li>
               <DropDownMenu>마이페이지</DropDownMenu>
             </Li>
           </DropDown>
-        </div>
-
-        <div className="loginContainer">
-          <Login to={"/login"}>
-            <i className="fas fa-user-circle"></i>
-            로그인
-          </Login>
-        </div>
+        </DropContainer>
       </MenuContainer>
+      <div className="loginContainer">
+        <Login to={"/login"}>
+          <i className="fas fa-user-circle"></i>
+          로그인
+        </Login>
+      </div>
     </NavContainer>
   );
 }
 
 const NavContainer = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-top: 2.94rem;
 
   position: absolute;
@@ -104,8 +103,13 @@ const MenuContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  width: 60%;
+  width: 55%;
   text-align: center;
+  margin-left: 8rem;
+`;
+
+const DropContainer = styled.div`
+  width: 9rem;
 `;
 
 const NavMenu = styled(Link)`
@@ -117,6 +121,8 @@ const NavMenu = styled(Link)`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.0075rem;
+
+  width: 9rem;
 `;
 
 const DropDown = styled.ul`
