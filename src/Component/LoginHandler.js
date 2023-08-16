@@ -17,6 +17,7 @@ function LoginHandler(props) {
         url: `${REDIRECT_URI}/?code=${code}`,
         headers: {
           "Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 전송
+          "Access-Control-Allow-Origin": "*",
         },
       }).then((res) => {
         const accessToken = res.data.access;

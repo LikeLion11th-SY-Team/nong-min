@@ -117,80 +117,74 @@ function SignUp(){
 
   return(
     <SignUpContainer>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input 
-              name="id"
-              value={id}
-              onChange={onChange}
-              placeholder="아이디 입력(6-20자)"
-            />
-            <button onClick={onCheckId}>중복 확인</button>
-          </div>
-          <input 
-            name="pw"
-            value={pw}
+      <MenuText>회원가입 정보 입력</MenuText>
+      <SignUpForm onSubmit={handleSubmit}>
+        <Text>아이디<Star>*</Star></Text>
+        <DupContainer>
+          <DupInput 
+            name="id"
+            value={id}
             onChange={onChange}
-            type="password"
-            placeholder="비밀번호 입력(문자, 숫자 포함 8-20자"
-          ></input>
-          <input 
-            name="confirmPw"
-            value={confirmPw}
-            onChange={onChange}
-            type="password"
-            placeholder="비밀번호 재입력"
+            placeholder="아이디 입력(6-20자)"
           />
-          <div>
-            <input 
-              name="nickname"
-              value={nickname}
-              onChange={onChange}
-              placeholder="닉네임 입력"
-            />
-            <button onClick={onCheckNickname}>중복 확인</button>
-          </div>
-          <input 
-            name="name"
-            value={name}
+          <DupBtn onClick={onCheckId}>중복 확인</DupBtn>
+        </DupContainer>
+
+        <Text>비밀번호<Star>*</Star></Text>
+        <Input 
+          name="pw"
+          value={pw}
+          onChange={onChange}
+          type="password"
+          placeholder="비밀번호 입력(문자, 숫자 포함 8-20자"
+        ></Input>
+        <Text>비밀번호 확인<Star>*</Star></Text>
+        <Input 
+          name="confirmPw"
+          value={confirmPw}
+          onChange={onChange}
+          type="password"
+          placeholder="비밀번호 재입력"
+        />
+
+        <Text>닉네임<Star>*</Star></Text>
+        <DupContainer>
+          <DupInput 
+            name="nickname"
+            value={nickname}
             onChange={onChange}
-            placeholder="이름 입력"
+            placeholder="닉네임 입력"
           />
-          <input 
-            name="phoneNumber"
-            value={phoneNumber}
+          <DupBtn onClick={onCheckNickname}>중복 확인</DupBtn>
+        </DupContainer>
+
+        <Text>전화번호</Text>
+        <Input 
+          name="phoneNumber"
+          value={phoneNumber}
+          onChange={onChange}
+          placeholder="전화번호 입력('-'제외 11자리"
+        />
+
+        <Text>이메일<Star>*</Star></Text>
+        <EmailContainer>
+          <EmailInput
+            name="emailId"
+            value={emailId}
             onChange={onChange}
-            placeholder="전화번호 입력('-'제외 11자리"
+            placeholder="이메일 입력"
           />
-          <div>
-            <input
-              name="emailId"
-              value={emailId}
-              onChange={onChange}
-              placeholder="이메일 입력"
-            />
-            <p> @ </p>
-            <input 
-              name="platformAddress"
-              value={platformAddress}
-              onChange={onChange}
-              placeholder="(직접 입력)"
-            />
-          </div>
-          <select 
-            name="crop"
-            value={crop}
+          <At> @ </At>
+          <EmailInput 
+            name="platformAddress"
+            value={platformAddress}
             onChange={onChange}
-          >
-            <option value={""}>주 농작물을 선택해 주세요</option>
-            <option value={"grain"}>곡물(벼과 식물, 콩과 식물 등)</option>
-            <option value={"fruit"}>과일</option>
-            <option value={"vegetable"}>채소</option>
-            <option value={"fish"}>수산물</option>
-            <option value={"etc"}>원예 및 기타 식물</option>
-          </select>
-          <button type="submit">가입하기</button>
-        </form>
+            placeholder="(직접 입력)"
+          />
+        </EmailContainer>
+        <EmailNotice>이메일 주소는 아이디/비밀번호 찾기에 꼭 필요한 정보이니 입력해주시면 도움이 됩니다.</EmailNotice>
+        <SubmitBtn type="submit">가입하기</SubmitBtn>
+      </SignUpForm>
     </SignUpContainer>
   )
 }
@@ -198,9 +192,151 @@ function SignUp(){
 export default SignUp;
 
 const SignUpContainer = styled.div`
+  position: absolute;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+`
+const MenuText = styled.p`
+  color: #152536;
+  text-align: left;
+  font-family: Inter;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.01125rem;
+`
+const SignUpForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+const DupContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 38.9375rem;
+  height: 3.8125rem;
+  border-radius: 0.75rem;
+  border: 0.7px solid #828282;
+  background: #FFF;
+`
+const DupInput = styled.input`
+  border: none;
+  margin: auto 1rem;
+  color: #828282;
+  font-family: Inter;
+  font-size: 1.4375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00863rem;
+`
+const DupBtn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 7.125rem;
+  height: 2.625rem;
+  margin: auto 1rem;
+  border-radius: 0.75rem;
+  background: #002D61;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.0075rem;
+`
+const Input = styled.input`
+  width: 37.9375rem;
+  height: 3.8125rem;
+  border-radius: 0.75rem;
+  border: 0.7px solid #828282;
+  background: #FFF;
+  padding-left: 1rem;
+  color: #828282;
+  font-family: Inter;
+  font-size: 1.4375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00863rem;
+`
+const EmailContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
+`
+const EmailInput = styled.input`
+  width: 16.5rem;
+  height: 3.8125rem;
+  border-radius: 0.75rem;
+  border: 0.7px solid #828282;
+  background: #FFF;
+  padding-left: 1rem;
+  color: #828282;
+  font-family: Inter;
+  font-size: 1.4375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00863rem;
+`
+const Text = styled.p`
+  color: #152536;
+  font-family: Inter;
+  font-size: 1.5625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00938rem;
+`
+const Star = styled.span`
+  color: #EB0000;
+  font-family: Inter;
+  font-size: 1.5625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00938rem;
+`
+const At = styled.div`
+  width: 3.875rem;
+  height: 2.0625rem;
+  color: #152536;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.4375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00863rem;
+`
+const EmailNotice = styled.div`
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  color: #828282;
+  font-family: Inter;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.00638rem;
+`
+const SubmitBtn = styled.button`
+  width: 16.1875rem;
+  height: 4rem;
+  margin: 0 auto;
+  border-radius: 0.9375rem;
+  background: #002D61;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.01125rem;
 `
