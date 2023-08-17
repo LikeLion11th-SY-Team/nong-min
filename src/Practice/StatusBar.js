@@ -44,7 +44,7 @@ const BarContainer = styled.div`
 `;
 
 const Bar = styled.div`
-  width: 66rem;
+  width: 63rem;
   height: 1.5625rem;
 
   border-radius: 0.9375rem;
@@ -56,7 +56,7 @@ const Bar = styled.div`
 `;
 
 const Status = styled.div`
-  width: ${({ step }) => step * 11}rem;
+  width: ${({ step }) => step * 9}rem;
   height: 1.5625rem;
 
   border-radius: 0.9375rem;

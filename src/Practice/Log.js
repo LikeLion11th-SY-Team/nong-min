@@ -1,51 +1,79 @@
 import styled from "styled-components";
+import { useLocation } from "react-router";
+import { useNavigate } from "react-router";
 
 function Log() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const step = searchParams.get("step");
+  const stepNum = Number(step) + 1;
+
+  const navigate = useNavigate();
+
   return (
     <Container>
       <ItemsContainer>
         <StepContainer step="0">
           <Step>
-            <Selected />
-            {/* <Icon>
-              <i class="fas fa-star"></i>
-            </Icon> */}
+            {step === "0" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-star"></i>
+              </Icon>
+            )}
           </Step>
           <Info>(0단계) 쉽게 찾아오기</Info>
         </StepContainer>
 
         <StepContainer step="1">
           <Step>
-            <Icon>
-              <i class="fas fa-sign-in-alt"></i>
-            </Icon>
+            {step === "1" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-sign-in-alt"></i>
+              </Icon>
+            )}
           </Step>
           <Info>(1단계) 회원가입</Info>
         </StepContainer>
 
         <StepContainer step="2">
           <Step>
-            <Icon>
-              <i class="fas fa-user-alt"></i>
-            </Icon>
+            {step === "2" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-user-alt"></i>
+              </Icon>
+            )}
           </Step>
           <Info>(2단계) 로그인</Info>
         </StepContainer>
 
         <StepContainer step="3">
           <Step>
-            <Icon>
-              <i class="fas fa-user-friends"></i>
-            </Icon>
+            {step === "3" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-user-friends"></i>
+              </Icon>
+            )}
           </Step>
           <Info>(3단계) 커뮤니티 둘러보기</Info>
         </StepContainer>
 
         <StepContainer step="4">
           <Step>
-            <Icon>
-              <i class="fas fa-edit"></i>
-            </Icon>
+            {step === "4" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-edit"></i>
+              </Icon>
+            )}
           </Step>
           <Info>(4단계) 글쓰기</Info>
         </StepContainer>
@@ -53,24 +81,34 @@ function Log() {
         <StepContainer step="5">
           <Info>(5단계) 소통하기</Info>
           <Step>
-            <Icon>
-              <i class="fas fa-heart"></i>
-            </Icon>
+            {step === "5" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-heart"></i>
+              </Icon>
+            )}
           </Step>
         </StepContainer>
 
         <StepContainer step="6">
           <Info>(6단계) 마이페이지 관리</Info>
           <Step>
-            <Icon>
-              <i class="fas fa-cog"></i>{" "}
-            </Icon>
+            {step === "6" ? (
+              <Selected />
+            ) : (
+              <Icon>
+                <i class="fas fa-cog"></i>{" "}
+              </Icon>
+            )}
           </Step>
         </StepContainer>
+        <BtnContainer>
+          <Btn onClick={() => navigate(`/practice/exercise?step=${stepNum}`)}>
+            다음 단계로
+          </Btn>
+        </BtnContainer>
       </ItemsContainer>
-      <BtnContainer>
-        <Btn>다음 단계로</Btn>
-      </BtnContainer>
     </Container>
   );
 }
@@ -110,7 +148,7 @@ const StepContainer = styled.div`
 
 const Step = styled.div`
   width: 12.5rem;
-  height: 8rem;
+  height: 7.5rem;
 
   color: #002d61;
   display: flex;

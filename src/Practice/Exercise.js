@@ -1,21 +1,23 @@
-import { Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PracticeMenu from "./PracticeMenu";
 import styled from "styled-components";
 import StatusBar from "./StatusBar";
 import Step0 from "./Step0";
+import Step1 from "./Step1";
 
 function Exercise() {
-  const step = 0;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const step = searchParams.get("step");
+
   return (
     <Container>
       <ItemsContainer>
-        <PracticeMenu />
+        <PracticeMenu step={step} />
         <ContentsContainer>
           <StatusBar step={step} />
           <Contents>
-            <Routes>
-              <Route path="/0" element={<Step0 />} />
-            </Routes>
+            {step === "0" ? <Step0 /> : step === "1" ? <Step1 /> : null}
           </Contents>
         </ContentsContainer>
       </ItemsContainer>

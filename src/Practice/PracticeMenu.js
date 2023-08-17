@@ -4,9 +4,7 @@ import { ReactComponent as DropDown } from "../svg/dropDown.svg";
 import { ReactComponent as DropUp } from "../svg/dropUp.svg";
 import { useState } from "react";
 
-function PracticeMenu() {
-  const location = useLocation();
-  const navigate = useNavigate();
+function PracticeMenu(props) {
   const [step0, setStep0] = useState(true);
   const [step2, setStep2] = useState(true);
   const [step5, setStep5] = useState(true);
@@ -21,13 +19,18 @@ function PracticeMenu() {
         <MenuContainer>
           <hr />
           <MenuOption>
-            <StepContainer onClick={() => setStep0(!step0)}>
+            <StepContainer>
               <Step>0단계&#41;</Step>
-              <MenuTitle>쉽게 찾아오기</MenuTitle>
-              <Icon>{step0 ? <DropUp /> : <DropDown />}</Icon>
+              <MenuTitle to={"/practice/exercise?step=0"}>
+                쉽게 찾아오기
+              </MenuTitle>
+              {/*               <Icon>{step0 ? <DropUp /> : <DropDown />}</Icon>
+               */}{" "}
             </StepContainer>
             <DropContainer drop={step0}>
-              <Menu to={"/practice/exercise/step0"}>북마크 추가</Menu>
+              <Menu to={"/practice/exercise?step=0"} cur={props.step === "0"}>
+                북마크 추가
+              </Menu>
             </DropContainer>
           </MenuOption>
 
@@ -35,21 +38,39 @@ function PracticeMenu() {
           <MenuOption>
             <StepContainer>
               <Step>1단계&#41;</Step>
-              <MenuTitle>회원가입</MenuTitle>
+              <MenuTitle
+                to={"/practice/exercise?step=1"}
+                cur={props.step === "1"}
+              >
+                회원가입
+              </MenuTitle>
             </StepContainer>
           </MenuOption>
 
           <hr />
           <MenuOption>
-            <StepContainer onClick={() => setStep2(!step2)}>
+            <StepContainer>
               <Step>2단계&#41;</Step>
-              <MenuTitle>로그인</MenuTitle>
-              <Icon>{step2 ? <DropUp /> : <DropDown />}</Icon>
+              <MenuTitle to={"/practice/exercise?step=2"}>로그인</MenuTitle>
+              {/*               <Icon>{step2 ? <DropUp /> : <DropDown />}</Icon>
+               */}{" "}
             </StepContainer>
             <DropContainer drop={step2}>
-              <Menu>일반 로그인</Menu>
-              <Menu>카카오톡으로 로그인</Menu>
-              <Menu>네이버로 로그인</Menu>
+              <Menu to={"/practice/exercise?step=2"} cur={props.step === "2"}>
+                일반 로그인
+              </Menu>
+              <Menu
+                to={"/practice/exercise?step=2.3"}
+                cur={props.step === "2.3"}
+              >
+                카카오톡으로 로그인
+              </Menu>
+              <Menu
+                to={"/practice/exercise?step=2.6"}
+                cur={props.step === "2.6"}
+              >
+                네이버로 로그인
+              </Menu>
             </DropContainer>
           </MenuOption>
 
@@ -57,7 +78,12 @@ function PracticeMenu() {
           <MenuOption>
             <StepContainer>
               <Step>3단계&#41;</Step>
-              <MenuTitle>커뮤니티 둘러보기</MenuTitle>
+              <MenuTitle
+                to={"/practice/exercise?step=3"}
+                cur={props.step === "3"}
+              >
+                커뮤니티 둘러보기
+              </MenuTitle>
             </StepContainer>
           </MenuOption>
 
@@ -65,34 +91,62 @@ function PracticeMenu() {
           <MenuOption>
             <StepContainer>
               <Step>4단계&#41;</Step>
-              <MenuTitle>글쓰기</MenuTitle>
+              <MenuTitle
+                to={"/practice/exercise?step=4"}
+                cur={props.step === "4"}
+              >
+                글쓰기
+              </MenuTitle>
             </StepContainer>
           </MenuOption>
 
           <hr />
           <MenuOption>
-            <StepContainer onClick={() => setStep5(!step5)}>
+            <StepContainer>
               <Step>5단계&#41;</Step>
-              <MenuTitle>소통하기</MenuTitle>
-              <Icon>{step5 ? <DropUp /> : <DropDown />}</Icon>
+              <MenuTitle to={"/practice/exercise?step=5"}>소통하기</MenuTitle>
+              {/*               <Icon>{step5 ? <DropUp /> : <DropDown />}</Icon>
+               */}{" "}
             </StepContainer>
             <DropContainer drop={step5}>
-              <Menu>댓글달기</Menu>
-              <Menu>'좋아요' 누르기</Menu>
+              <Menu to={"/practice/exercise?step=5"} cur={props.step === "5"}>
+                댓글달기
+              </Menu>
+              <Menu
+                to={"/practice/exercise?step=5.5"}
+                cur={props.step === "5.5"}
+              >
+                '좋아요' 누르기
+              </Menu>
             </DropContainer>
           </MenuOption>
 
           <hr />
           <MenuOption>
-            <StepContainer onClick={() => setStep6(!step6)}>
+            <StepContainer>
               <Step>6단계&#41;</Step>
-              <MenuTitle>마이페이지 관리</MenuTitle>
-              <Icon>{step6 ? <DropUp /> : <DropDown />}</Icon>
+              <MenuTitle to={"/practice/exercise?step=6"}>
+                마이페이지 관리
+              </MenuTitle>
+              {/*               <Icon>{step6 ? <DropUp /> : <DropDown />}</Icon>
+               */}{" "}
             </StepContainer>
             <DropContainer drop={step6}>
-              <Menu>개인정보 수정</Menu>
-              <Menu>비밀번호 변경</Menu>
-              <Menu>작성글 / 댓글확인</Menu>
+              <Menu to={"/practice/exercise?step=6"} cur={props.step === "6"}>
+                개인정보 수정
+              </Menu>
+              <Menu
+                to={"/practice/exercise?step=6.3"}
+                cur={props.step === "6.3"}
+              >
+                비밀번호 변경
+              </Menu>
+              <Menu
+                to={"/practice/exercise?step=6.6"}
+                cur={props.step === "6.6"}
+              >
+                작성글 / 댓글확인
+              </Menu>
             </DropContainer>
           </MenuOption>
         </MenuContainer>
@@ -103,7 +157,7 @@ function PracticeMenu() {
 
 const Container = styled.div`
   width: 16rem;
-  height: 46rem;
+  height: 48rem;
 
   border-radius: 0.75rem;
   border: 1px solid #dee2e6;
@@ -152,9 +206,12 @@ const MenuOption = styled.div`
   margin-left: 0.5rem;
 `;
 
-const MenuTitle = styled.div`
-  color: #152536;
+const MenuTitle = styled(Link)`
+  color: ${({ cur }) => (cur ? " #002D61" : "rgba(21, 37, 54, 0.7)")};
+  font-weight: ${({ cur }) => (cur ? "600" : "400")};
+
   margin-bottom: 0.5rem;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;
@@ -162,7 +219,6 @@ const MenuTitle = styled.div`
 `;
 
 const Menu = styled(Link)`
-  color: rgba(21, 37, 54, 0.7);
   text-decoration: none;
 
   display: inline-block;
@@ -172,9 +228,9 @@ const Menu = styled(Link)`
   &:hover {
     cursor: pointer;
   }
-  /* 
-  color: ${({ menu }) => (menu ? "#002D61" : "#152536")};
-  font-weight: ${({ menu }) => (menu ? "600" : "500")}; */
+
+  color: ${({ cur }) => (cur ? " #002D61" : "rgba(21, 37, 54, 0.7)")};
+  font-weight: ${({ cur }) => (cur ? "600" : "400")};
 `;
 
 const Icon = styled.div`
