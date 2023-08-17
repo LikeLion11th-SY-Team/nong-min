@@ -24,10 +24,14 @@ function NavBar() {
               <DropDownMenu to={"/practice/info"}>학습공간 소개</DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu to={"/practice/log"}>학습기록 보기</DropDownMenu>
+              <DropDownMenu to={"/practice/log?step=0"}>
+                학습기록 보기
+              </DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu to={"/practice/exercise"}>학습하기</DropDownMenu>
+              <DropDownMenu to={"/practice/exercise?step=0"}>
+                학습하기
+              </DropDownMenu>
             </Li>
           </DropDown>
         </DropContainer>

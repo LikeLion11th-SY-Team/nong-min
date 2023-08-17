@@ -39,7 +39,7 @@ function Practice() {
             <Box
               op="log"
               hover={hover}
-              onClick={() => navigate("/practice/log")}
+              onClick={() => navigate("/practice/log?step=0")}
               onMouseEnter={() => setHover(2)}
               onMouseLeave={() => setHover(0)}
             >
@@ -56,7 +56,7 @@ function Practice() {
           <Box
             op="exercise"
             hover={hover}
-            onClick={() => navigate("/practice/exercise")}
+            onClick={() => navigate("/practice/exercise?step=0")}
             onMouseEnter={() => setHover(3)}
             onMouseLeave={() => setHover(0)}
           >
