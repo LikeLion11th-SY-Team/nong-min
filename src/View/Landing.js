@@ -92,13 +92,7 @@ const Menu = styled.div`
   width: 22.9375rem;
   height: 38.8125rem;
 
-  /* background-image: ${({ practice }) =>
-    practice ? `url(/images/practice.jpg)` : "url(/images/community.jpg)"};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
   background-color: ${({ menu }) => (menu === "practice" ? "#fff" : "#002D61")};
-
   border-radius: ${({ menu }) =>
     menu === "practice"
       ? "1.875rem 0rem 0rem 1.875rem;"
@@ -153,7 +147,6 @@ const MenuImg = styled.div`
       : "url(/images/community.png)"};
 
   background-repeat: no-repeat;
-  /* background-size: cover; */
   background-position: center;
 
   position: absolute;
