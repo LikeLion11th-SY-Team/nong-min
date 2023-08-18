@@ -30,9 +30,10 @@ function App() {
         /* 
         const accessTokenExp = decodeToken(accessToken).exp; // 토큰의 만료 시간
         const now = Math.floor(Date.now() / 1000); // 현재 시간
+        
         if (accessTokenExp < now) { // 엑세스 토큰이 만료되었을 경우, 리프레시 토큰 사용
           try {
-            const res = await axios.post(`${BaseUrl}/auth/refresh/`, { refreshToken });
+            const res = await axios.post(`${BaseUrl}/auth/refresh/`, { refresh });
             const newAccessToken = res.data.access;
             setCookie("accessToken", newAccessToken, { path: "/" });
           } catch (err) {
