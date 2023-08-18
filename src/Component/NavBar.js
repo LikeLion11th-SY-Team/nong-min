@@ -36,21 +36,26 @@ function NavBar() {
           </DropDown>
         </DropContainer>
         <DropContainer>
-          <NavMenu to={"/community"}>커뮤니티</NavMenu>
+          <NavMenu to={"/community/free"}>커뮤니티</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>자유게시판</DropDownMenu>
+              <DropDownMenu to={"/community/free"}>자유게시판</DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu>정보공유 게시판</DropDownMenu>
+              <DropDownMenu to={"/community/info"}>
+                정보공유 게시판
+              </DropDownMenu>
             </Li>
           </DropDown>
         </DropContainer>
         <DropContainer className="userContainer">
-          <NavMenu to={"/mypage"}>계정관리</NavMenu>
+          <NavMenu to={"/mypage/editdata"}>계정관리</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>마이페이지</DropDownMenu>
+              <DropDownMenu to={"/mypage/editdata"}>마이페이지</DropDownMenu>
+            </Li>
+            <Li>
+              <DropDownMenu to={"/mypage/posts"}>내 활동</DropDownMenu>
             </Li>
           </DropDown>
         </DropContainer>
