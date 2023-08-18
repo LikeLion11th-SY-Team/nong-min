@@ -4,7 +4,6 @@ import axios from "axios";
 import { getCookie } from "../API/Cookie";
 
 import { styled } from "styled-components";
-import { BaseUrl } from "../API/Api";
 import DetailCard from "./DetailCard";
 
 function PostDetail() {

@@ -5,7 +5,6 @@ import PostCard from "./PostCard";
 import { Route, Routes } from "react-router-dom";
 
 import { styled } from "styled-components";
-import { BaseUrl } from "../API/Api";
 import PostDetail from "./PostDetail";
 
 function CommunityBoard(props) { // props로 게시판 종류 받아옴
