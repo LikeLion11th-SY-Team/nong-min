@@ -1,18 +1,14 @@
 import { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { getCookie } from "../API/Cookie";
 
 import styled from "styled-components";
 import { BaseUrl } from "../API/Api";
 
 function PostForm() {
-  /* 
-  const getAuthor = async () => {
-    const res = await axios.get(`${BaseUrl}/auth/api/get/userinfo/`);
-    const author = res.data.user_id;
-  }
-  */
-  // const getPost = axios.get(`${BaseUrl}/recommend/write/`);
+  const access = getCookie("accessToken");
+  const refresh = getCookie("refreshToken");
   
   const [post, setPost] = useState({
     title: '',
@@ -71,7 +67,15 @@ function PostForm() {
     try{
       const res = await axios.post(
         `${BaseUrl}/community/create/`,
-        { title, contents, category }
+        { title, contents, category },
+        {
+          headers: {
+            token: {
+              access: `${access}`,
+              refresh: `${refresh}`
+            }
+          },
+        }
       )
       alert('등록되었습니다');
       navigate(-1); // 커뮤니티, 이전페이지, 작성한 게시글 중 어디로 링크할지 논의 필요
@@ -82,7 +86,7 @@ function PostForm() {
 
   const cancel = (e) => {
     e.preventDefault()
-    alert('취소되었습니다')
+    alert('취소되었습니다.')
     navigate(-1);
   };
 
