@@ -14,7 +14,7 @@ function Explanation(props) {
       <ExplainContainer none={props.none}>
         <CenterContainer>
           <TutorContainer opacity={props.opacity}>
-            <BubbleContainer op="1">
+            <BubbleContainer op="1" none={props.none}>
               <InfoContainer op="1">
                 {props.info1}
                 <br /> {props.info2}
@@ -42,8 +42,7 @@ function Explanation(props) {
 }
 
 const Img = styled.img`
-  width: 48rem;
-  height: 30rem;
+  width: 70%;
 
   position: absolute;
 
@@ -54,8 +53,8 @@ const Img = styled.img`
 `;
 
 const ComponentContainer = styled.div`
-  width: 48rem;
-  height: 30rem;
+  width: 50%;
+  height: 70%;
 
   position: absolute;
 
@@ -88,18 +87,19 @@ const ExplainContainer = styled.div`
   bottom: 0;
   z-index: 1;
 
-  width: ${({ none }) => (none === "1" ? "auto" : "100%")};
+  width: ${({ none }) => (none === "1" ? "35%" : "100%")};
+  height: 100%;
 `;
 
 const BubbleContainer = styled.div`
-  width: ${({ op }) => (op === "1" ? " 22rem" : "24rem")};
-  height: ${({ op }) => (op === "1" ? " 12rem" : "15.5rem")};
+  width: ${({ none }) => (none === "1" ? "auto" : "70%")};
+  height: ${({ op }) => (op === "1" ? "30%" : "40%")};
 
   background-image: ${({ op }) =>
     op === "1" ? " url(/images/bubble.png)" : "url(/images/bubble2.png)"};
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background-position: center center;
+  background-size: contain;
 
   color: ${({ op }) => (op === "1" ? " #fff" : "#002d61")};
   text-align: center;
@@ -118,26 +118,30 @@ const InfoContainer = styled.div`
 `;
 
 const Tutor = styled.div`
-  width: 15rem;
-  height: 30.40406rem;
+  height: 60%;
 
   background-image: ${({ op }) =>
     op === "1" ? " url(/images/tutor.png)" : "url(/images/tutor2.png)"};
   background-repeat: no-repeat;
+  background-size: contain;
 
   margin-left: ${({ op }) => (op === "1" ? " 0" : "13rem")};
 `;
 
 const CenterContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
+
+  height: 100%;
 `;
 
 const TutorContainer = styled.div`
   display: ${({ none }) => (none === "1" ? "none" : "block")};
   opacity: ${({ opacity }) => (opacity === "1" ? "0.4" : "1")};
+
+  height: 100%;
+  width: 100%;
 `;
 
 export default Explanation;

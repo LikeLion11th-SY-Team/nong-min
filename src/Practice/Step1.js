@@ -13,29 +13,31 @@ function Step1() {
       <ContentsContainer>
         {page === 0 ? (
           <>
-            <CenterContainer>
-              <Bubble>
-                <Info>
-                  카카오 계정이
-                  <Highlight>없다면</Highlight>
-                  이쪽을 선택해주세요!
-                </Info>
-              </Bubble>
-              <Bubble>
-                <Info>
-                  카카오 계정이
-                  <Highlight>있다면</Highlight>
-                  이쪽을 선택해주세요!
-                </Info>
-              </Bubble>
-            </CenterContainer>
-            <CenterContainer>
-              <Icon op="user" />
-              <Icon op="kakao" />
-            </CenterContainer>
-            <CenterContainer>
+            <InfoContainer>
+              <BubbleContainer>
+                <Bubble>
+                  <Info>
+                    카카오 계정이
+                    <Highlight>없다면</Highlight>
+                    이쪽을 선택해주세요!
+                  </Info>
+                </Bubble>
+                <Icon op="user" />
+              </BubbleContainer>
+              <BubbleContainer>
+                <Bubble>
+                  <Info>
+                    카카오 계정이
+                    <Highlight>있다면</Highlight>
+                    이쪽을 선택해주세요!
+                  </Info>
+                </Bubble>
+                <Icon op="kakao" />
+              </BubbleContainer>
+            </InfoContainer>
+            <CharacterContainer>
               <Character />
-            </CenterContainer>
+            </CharacterContainer>
           </>
         ) : page === 1 ? (
           <Explanation
@@ -187,24 +189,27 @@ function Step1() {
 
 const Container = styled.div`
   position: relative;
-  height: 92%;
+  height: 100%;
 `;
 
 const ContentsContainer = styled.div`
   height: 100%;
 `;
 
-const CenterContainer = styled.div`
+const InfoContainer = styled.div`
+  width: 100%;
+  height: 35%;
+
   display: flex;
   justify-content: space-around;
+`;
 
-  padding-top: 3rem;
+const BubbleContainer = styled.div`
+  height: 100%;
+  width: 25%;
 `;
 
 const Bubble = styled.div`
-  width: 17.125rem;
-  height: 9rem;
-
   border-radius: 50%;
   background: #002d61;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -212,17 +217,34 @@ const Bubble = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: 80%;
+  width: 100%;
+
+  margin: 0 auto;
+  margin-bottom: 2rem;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 10%;
 `;
 
 const Icon = styled.div`
-  width: 4.375rem;
-  height: 4.375rem;
+  height: 5rem;
+  width: 5rem;
 
   background-image: ${({ op }) =>
     op === "user"
       ? "url(/images/user_circle.jpg)"
       : "url(/images/kakao_icon.jpg)"};
   background-repeat: no-repeat;
+  background-size: cover;
+
+  margin: 0 auto;
 `;
 
 const Info = styled.div`
@@ -240,12 +262,20 @@ const Highlight = styled.div`
   color: #fbff45;
 `;
 
+const CharacterContainer = styled.div`
+  height: 65%;
+  width: 100%;
+
+  margin: 0 auto;
+`;
+
 const Character = styled.div`
-  width: 42.375rem;
-  height: 23.125rem;
+  height: 100%;
+  width: 100%;
 
   background-image: url("/images/character.png");
   background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 const NextBtn = styled.div`

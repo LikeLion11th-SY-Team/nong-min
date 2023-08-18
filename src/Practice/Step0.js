@@ -34,7 +34,7 @@ function Step0() {
 
 const Container = styled.div`
   position: relative;
-  height: 92%;
+  height: 100%;
 `;
 
 const ContentsContainer = styled.div`

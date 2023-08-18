@@ -26,22 +26,23 @@ function Exercise() {
 }
 
 const Container = styled.div`
-  padding: 10rem 5% 0 5%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 `;
 
 const ItemsContainer = styled.div`
+  padding-top: 10rem;
   display: flex;
   justify-content: center;
 `;
 
 const ContentsContainer = styled.div`
-  width: 80%;
+  width: 75%;
 `;
 
 const Contents = styled.div`
-  width: 70rem;
-  height: 100%;
+  width: 100%;
+  height: 92%;
 
   margin: 0 auto;
 `;

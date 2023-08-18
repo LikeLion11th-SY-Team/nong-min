@@ -15,15 +15,15 @@ function StatusBar(props) {
 }
 
 const Container = styled.div`
-  width: 75rem;
+  width: 100%;
   height: 8%;
   display: flex;
-
-  margin: 0 auto;
+  justify-content: center;
 `;
 
 const ItemsContainer = styled.div`
   position: relative;
+  width: 90%;
 `;
 
 const Title = styled.div`
@@ -38,13 +38,13 @@ const Title = styled.div`
 `;
 
 const BarContainer = styled.div`
-  width: 67rem;
+  width: 80%;
   position: relative;
   margin: 0 auto;
 `;
 
 const Bar = styled.div`
-  width: 63rem;
+  width: 98%;
   height: 1.5625rem;
 
   border-radius: 0.9375rem;
@@ -56,7 +56,7 @@ const Bar = styled.div`
 `;
 
 const Status = styled.div`
-  width: ${({ step }) => step * 9}rem;
+  width: ${({ step }) => step * 14}%;
   height: 1.5625rem;
 
   border-radius: 0.9375rem;

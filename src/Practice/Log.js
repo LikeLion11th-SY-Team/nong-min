@@ -120,17 +120,17 @@ const Container = styled.div`
 `;
 
 const ItemsContainer = styled.div`
-  height: 87%;
-  width: 80%;
-
-  margin: 0 auto;
-  padding-top: 2rem;
+  height: 100%;
+  width: 100%;
 `;
 
 const StepContainer = styled.div`
+  width: 100%;
+  height: 13%;
+
   display: flex;
 
-  margin-left: ${({ step }) =>
+  /* padding-left: ${({ step }) =>
     step === "0" || step === "4"
       ? "50%"
       : step === "1" || step === "3"
@@ -139,16 +139,17 @@ const StepContainer = styled.div`
       ? "10%"
       : "auto"};
 
-  margin-right: ${({ step }) =>
+  padding-right: ${({ step }) =>
     step === "5" ? "10%" : step === "6" ? "30%" : "auto"};
 
   justify-content: ${({ step }) =>
-    step === "5" || step === "6" ? "right" : "auto"};
+    step === "5" || step === "6" ? "right" : "auto"}; */
+  justify-content: center;
 `;
 
 const Step = styled.div`
-  width: 12.5rem;
-  height: 7.5rem;
+  width: 20%;
+  height: 100%;
 
   color: #002d61;
   display: flex;
@@ -190,6 +191,7 @@ const Info = styled.div`
 `;
 
 const BtnContainer = styled.div`
+  height: 9%;
   display: flex;
   justify-content: right;
 
