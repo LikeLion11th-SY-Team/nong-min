@@ -183,6 +183,9 @@ function Step1() {
       >
         다음 단계로
       </NextStepBtn>
+      <NextStepBtn page={page === 11} onClick={() => setPage((cur) => cur + 1)}>
+        연습해보기
+      </NextStepBtn>
     </Container>
   );
 }
