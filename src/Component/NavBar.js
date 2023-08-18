@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [hover, setHover] = useState(0);
   return location.pathname === "/" ||
     location.pathname === "/practice/log" ? null : (
