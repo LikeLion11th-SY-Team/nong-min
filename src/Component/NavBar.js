@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ function NavBar() {
       onMouseLeave={() => setHover(0)}
     >
       <div className="logoContainer">
-        <NavLogo to={"/home"}>로고</NavLogo>
+        <NavLogo onClick={() => navigate("/home")}></NavLogo>
       </div>
 
       <MenuContainer>
@@ -60,12 +60,12 @@ function NavBar() {
           </DropDown>
         </DropContainer>
       </MenuContainer>
-      <div className="loginContainer">
+      <LoginContainer>
         <Login to={"/login"}>
           <i className="fas fa-user-circle"></i>
           로그인
         </Login>
-      </div>
+      </LoginContainer>
     </NavContainer>
   );
 }
@@ -77,7 +77,6 @@ const NavContainer = styled.div`
 
   padding-left: 5%;
   padding-right: 5%;
-  padding-top: 2.94rem;
 
   position: absolute;
   top: 0;
@@ -97,15 +96,19 @@ const NavContainer = styled.div`
   }
 `;
 
-const NavLogo = styled(Link)`
-  color: #002d61;
-  text-decoration: none;
+const NavLogo = styled.div`
+  width: 11.8125rem;
+  height: 5.375rem;
 
-  font-size: 1.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.01125rem;
+  background-image: url("/images/main_logo.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+
+  &:hover {
+    cursor: pointer;
+  }
+  margin-top: 1.1rem;
 `;
 
 const MenuContainer = styled.div`
@@ -115,6 +118,7 @@ const MenuContainer = styled.div`
   width: 55%;
   text-align: center;
   margin-left: 8rem;
+  padding-top: 3rem;
 `;
 
 const DropContainer = styled.div`
@@ -148,6 +152,11 @@ const DropDownMenu = styled(Link)`
   line-height: normal;
   letter-spacing: -0.12px;
   text-decoration: none;
+`;
+
+const LoginContainer = styled.div`
+  padding-top: 3rem;
+  padding-right: 4rem;
 `;
 
 const Login = styled(Link)`

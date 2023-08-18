@@ -5,14 +5,11 @@ function Home() {
   return (
     <Container>
       <BkImage />
-
       <ItemsContainer>
         <BoardContainer>
           <BoardInfo>
             우리 모두가 이어질 수 있도록
-            <BoardTitle>
-              웹사이트 학습 기능 탑재 커뮤니티, "서비스 이름"
-            </BoardTitle>{" "}
+           <BoardTitle>웹사이트 학습 기능 탑재 커뮤니티, "한걸음씩"</BoardTitle>
           </BoardInfo>
         </BoardContainer>
 

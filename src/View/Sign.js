@@ -43,7 +43,7 @@ const BkImage = styled.div`
   margin: 0;
 
   background-repeat: no-repeat;
-  background-position: center left;
+  background-position: center 45%;
   background-size: cover;
 `;
 
