@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
+import PostForm from "../Community/PostForm";
 
 function Community() {
   return (
     <CommunityContainer>
-      
+      <PostForm/>
     </CommunityContainer>
   )
 }
