@@ -70,10 +70,8 @@ function PostForm() {
         { title, contents, category },
         {
           headers: {
-            token: {
-              access: `${access}`,
-              refresh: `${refresh}`
-            }
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${access}`,
           },
         }
       )
