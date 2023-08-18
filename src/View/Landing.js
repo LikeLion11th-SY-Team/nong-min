@@ -31,7 +31,7 @@ function Landing() {
         <Menu
           menu="community"
           hover={hover}
-          onClick={() => navigate("/community")}
+          onClick={() => navigate("/community/free")}
           onMouseEnter={() => setHover(2)}
           onMouseLeave={() => setHover(0)}
         >
