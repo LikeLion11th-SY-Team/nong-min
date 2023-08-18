@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { KAKAO_AUTH_URL } from "../API/KaKaoApi";
-import { BaseUrl } from "../API/Api";
 import axios from "axios";
 import { setCookie } from "../API/Cookie";
 
@@ -85,7 +83,7 @@ function Login() {
         <Hr />
       </TextContainer>
 
-      <a href={`https://kauth.kakao.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URI}&response_type=code`; `}>
+      <a href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`}>
         <KakaoImg
           src="/images/kakao_login_large_wide 1.png"
           alt="카카오 로그인 이미지"
