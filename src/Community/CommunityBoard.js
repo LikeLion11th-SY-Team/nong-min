@@ -13,9 +13,12 @@ function CommunityBoard(props) { // props로 게시판 종류 받아옴
   const getPostList = async() => {
     await axios.get(`${BaseUrl}/community/${props.menu}/`)
       .then((res) => setPostList(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)
+    );
   }
-  useEffect( () => getPostList, []);
+  useEffect( () => {
+    getPostList();
+  }, [props.menu]);
   console.log(postList);
 
   return (
