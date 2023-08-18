@@ -30,7 +30,7 @@ function Login() {
     }
     try {
       // 로그인 시 쿠키에 토큰 저장
-      const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw });
+      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/login/`, { id, pw });
       const accessToken = res.data.token.access;
       const refreshToken = res.data.token.refresh;
 
@@ -85,7 +85,7 @@ function Login() {
         <Hr />
       </TextContainer>
 
-      <a href={KAKAO_AUTH_URL}>
+      <a href={`https://kauth.kakao.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URI}&response_type=code`; `}>
         <KakaoImg
           src="/images/kakao_login_large_wide 1.png"
           alt="카카오 로그인 이미지"

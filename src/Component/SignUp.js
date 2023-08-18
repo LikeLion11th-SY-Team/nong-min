@@ -33,7 +33,7 @@ function SignUp() {
     // 아이디 중복 확인 로직
 
     try{
-      const res = await axios.post(`${BaseUrl}/auth/api/check/id/`, { id });
+      const res = await axios.post(`${REACT_APP_BaseUrl}/auth/api/check/id/`, { id });
       
       if(res.status === 200){
         setCheckId(true);
@@ -53,7 +53,7 @@ function SignUp() {
     // 성공시 set 통해서 true값 저장 후 submit함수에서 반영
     
     try{
-      const res = await axios.post(`${BaseUrl}/auth/api/check/nickname/`, { nickname });
+      const res = await axios.post(`${REACT_APP_BaseUrl}/auth/api/check/nickname/`, { nickname });
       
       if(res.status === 200){
         setCheckNickname(true);

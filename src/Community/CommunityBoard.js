@@ -13,7 +13,7 @@ function CommunityBoard(props) { // props로 게시판 종류 받아옴
   // 게시물 데이터 로드
   const [postList, setPostList] = useState([]);
   const getPostList = async() => {
-    await axios.get(`${BaseUrl}/community/${props.menu}/`)
+    await axios.get(`${process.env.REACT_APP_BaseUrl}/community/${props.menu}/`)
       .then((res) => setPostList(res.data))
       .catch((err) => console.log(err)
     );

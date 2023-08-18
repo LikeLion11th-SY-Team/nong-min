@@ -27,7 +27,7 @@ function EditData() {
 
   async function getUser() {
     await axios
-      .get(`${BaseUrl}/auth/api/userinfo/`, {
+      .get(`${REACT_APP_BaseUrl}/auth/api/userinfo/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
