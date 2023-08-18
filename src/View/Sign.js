@@ -1,11 +1,11 @@
 import Login from "../Component/Login";
-import SignUp from "../Component/SignUp";
+import { SignUp } from "../Component/SignUp";
 import { styled } from "styled-components";
 import { Route, Routes, Link } from "react-router-dom";
 import { useState } from "react";
 
 function Sign() {
-  const [sign, setSign] = useState(0);
+  const [sign, setSign] = useState(1);
   return (
     <Container sign={sign}>
       <BkImage />

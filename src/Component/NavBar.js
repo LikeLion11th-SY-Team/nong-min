@@ -5,7 +5,8 @@ import styled from "styled-components";
 function NavBar() {
   const location = useLocation();
   const [hover, setHover] = useState(0);
-  return location.pathname === "/" ? null : (
+  return location.pathname === "/" ||
+    location.pathname === "/practice/log" ? null : (
     <NavContainer
       onMouseEnter={() => setHover(1)}
       onMouseLeave={() => setHover(0)}
@@ -20,13 +21,17 @@ function NavBar() {
           <NavMenu to={"/practice"}>학습공간</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>학습공간 소개</DropDownMenu>
+              <DropDownMenu to={"/practice/info"}>학습공간 소개</DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu>학습기록 보기</DropDownMenu>
+              <DropDownMenu to={"/practice/log?step=0"}>
+                학습기록 보기
+              </DropDownMenu>
             </Li>
             <Li>
-              <DropDownMenu>학습하기</DropDownMenu>
+              <DropDownMenu to={"/practice/exercise?step=0"}>
+                학습하기
+              </DropDownMenu>
             </Li>
           </DropDown>
         </DropContainer>
