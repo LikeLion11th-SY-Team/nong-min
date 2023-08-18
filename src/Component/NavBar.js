@@ -1,10 +1,37 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { BaseUrl } from "../API/Api";
+import { getCookie } from "../API/Cookie";
+import axios from "axios";
 
 function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [hover, setHover] = useState(0);
+  const [nickname, setNickname] = useState();
+  const [login, setLogin] = useState(false);
+
+  const accessToken = getCookie("accessToken");
+
+  useEffect(() => {
+    getNickname();
+  }, []);
+
+  async function getNickname() {
+    await axios
+      .get(`${BaseUrl}/auth/api/get/nickname/`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        setNickname(response.data);
+        setLogin(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return location.pathname === "/" ||
     location.pathname === "/practice/log" ? null : (
     <NavContainer
@@ -62,8 +89,10 @@ function NavBar() {
       </MenuContainer>
       <LoginContainer>
         <Login to={"/login"}>
-          <i className="fas fa-user-circle"></i>
-          로그인
+          <UserLogoContainer>
+            <i className="fas fa-user-circle"></i>
+          </UserLogoContainer>
+          <UserName>{login ? `${nickname}` : "로그인"}</UserName>
         </Login>
       </LoginContainer>
     </NavContainer>
@@ -167,11 +196,21 @@ const Login = styled(Link)`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.00675rem;
+
+  display: flex;
 `;
 
 const Li = styled.li`
   list-style: none;
   padding-bottom: 0.4rem;
+`;
+
+const UserLogoContainer = styled.div`
+  padding-top: 0.1rem;
+`;
+
+const UserName = styled.div`
+  margin-left: 0.5rem;
 `;
 
 export default NavBar;
