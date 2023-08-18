@@ -9,14 +9,16 @@ import Home from "./View/Home.js";
 import AboutUs from "./View/AboutUs";
 import Community from "./View/Community";
 import Practice from "./View/Practice";
+import Exercise from "./Practice/Exercise";
 import MyPage from "./View/MyPage";
 import Login from "./Component/Login";
 import LoginHandler from "./Component/LoginHandler";
 import Landing from "./View/Landing";
-import SignUp from "./Component/SignUp";
+import { SignUp } from "./Component/SignUp";
 
 import "./App.css";
 import Sign from "./View/Sign";
+import Log from "./Practice/Log";
 
 function App() {
   useEffect(() => {
@@ -50,19 +52,18 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
+          <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/community/*" element={<Community />} />
           <Route path="/practice/*" element={<Practice />} />
+          <Route path="/practice/exercise/*" element={<Exercise />} />
+          <Route path="/practice/log" element={<Log />} />
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/sign" element={<Sign/>} />
-          <Route
-            path="/auth/api/kakao-login/"
-            element={<LoginHandler />}
-          />
+          <Route path="/sign" element={<Sign />} />
+          <Route path="/auth/api/kakao-login/" element={<LoginHandler />} />
         </Routes>
       </Router>
     </div>
