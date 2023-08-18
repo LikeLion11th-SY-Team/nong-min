@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PostCard from "./PostCard";
+import { Route, Routes } from "react-router-dom";
 
 import { styled } from "styled-components";
 import { BaseUrl } from "../API/Api";
+import PostDetail from "./PostDetail";
 
 function CommunityBoard(props) { // props로 게시판 종류 받아옴
   const setMenuTitle = props.menu === "free" ? "자유 게시판" : "정보 공유 게시판" ;
@@ -35,7 +37,7 @@ function CommunityBoard(props) { // props로 게시판 종류 받아옴
       
       <Posts>
         {postList.map((post) => (
-          <Link key={post.pk} to={`/community/${props.menu}/${post.pk}`} >
+          <Link key={post.pk} to={`/community/${post.category}/${post.pk}`} >
             <PostCard 
               key={post.pk}
               id={post.pk}
@@ -43,6 +45,7 @@ function CommunityBoard(props) { // props로 게시판 종류 받아옴
               author={post.writer_nickname}
               date={post.created_at}
               like={post.likes_count}
+              menu={props.menu}
             />
           </Link>
         ))}

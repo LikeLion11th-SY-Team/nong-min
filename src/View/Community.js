@@ -6,6 +6,7 @@ import PostForm from "../Community/PostForm";
 
 import { Routes, Route } from "react-router-dom";
 import CommunityBoard from "../Community/CommunityBoard";
+import PostDetail from "../Community/PostDetail";
 
 function Community() {
   return (
@@ -18,6 +19,7 @@ function Community() {
             <Route path="/free" element={<CommunityBoard menu="free" />} />
             <Route path="/info" element={<CommunityBoard menu="info" />} />
             <Route path="/write" element={<PostForm />} />
+            <Route path="/:category/:pk" element={<PostDetail />} />
           </Routes>
         </BoardContainer>
       </ItemsContainer>
@@ -38,7 +40,7 @@ const BkImage = styled.div`
   margin: 0;
 
   background-repeat: no-repeat;
-  background-position: center 45%;
+  background-position: center left;
   background-size: cover;
 `;
 
