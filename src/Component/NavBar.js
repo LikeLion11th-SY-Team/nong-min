@@ -20,7 +20,7 @@ function NavBar() {
 
   async function getNickname() {
     await axios
-      .get(`${BaseUrl}/auth/api/get/nickname/`, {
+      .get(`${REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {

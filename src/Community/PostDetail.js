@@ -14,7 +14,7 @@ function PostDetail() {
   const { category, pk } = useParams();
   const [postData, setPostData] = useState({});
   const getPost = async () => {
-    await axios.get(`${BaseUrl}/community/${pk}/`,
+    await axios.get(`${process.env.REACT_APP_BaseUrl}/community/${pk}/`,
       {
         headers: {
           'Content-Type': 'application/json',
