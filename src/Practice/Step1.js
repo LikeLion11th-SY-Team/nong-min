@@ -136,14 +136,47 @@ function Step1() {
             src="/images/home_view.png"
             opacity="1"
           />
-        ) : null}
+        ) : page === 12 ? (
+          <Explanation
+            info1="아이디를 입력한 후"
+            info2="중복 확인 버튼을 눌러서"
+            info3="사용 가능한지 확인하세요."
+            exercise="signup"
+            none="1"
+          />
+        ) : page === 13 ? (
+          <Explanation
+            info1="비밀번호를 설정한 후,"
+            info2="동일한 비밀번호를 한 번 더"
+            info3="‘비밀번호 확인’란에 입력하세요."
+            exercise="signup"
+            none="1"
+          />
+        ) : page === 14 ? (
+          <Explanation
+            info1="사용할 닉네임을 입력한 후"
+            info2="중복 확인 버튼을 눌러서"
+            info3="사용 가능한지 확인하세요."
+            exercise="signup"
+            none="1"
+          />
+        ) : (
+          <Explanation
+            info1="사용할 닉네임을 입력한 후"
+            info2="중복 확인 버튼을 눌러서"
+            info3="사용 가능한지 확인하세요."
+            exercise="signup"
+            none="1"
+            opacity="1"
+          />
+        )}
       </ContentsContainer>
       <NextBtn onClick={() => setPage((cur) => cur + 1)}>
         <i class="fas fa-forward"></i>
       </NextBtn>
 
       <NextStepBtn
-        page={page === 11}
+        page={page === 15}
         onClick={() => navigate("/practice/log?step=1")}
       >
         다음 단계로

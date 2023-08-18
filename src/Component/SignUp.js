@@ -225,7 +225,73 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+function SignUpEx() {
+  return (
+    <SignUpContainer>
+      <MenuText>회원가입 정보 입력</MenuText>
+      <SignUpForm>
+        <Text>
+          아이디<Star>*</Star>
+        </Text>
+        <DupContainer>
+          <DupInput placeholder="아이디 입력(6-20자)" />
+          <DupBtn
+            onClick={() => {
+              alert("아이디가 중복되지 않습니다.");
+            }}
+          >
+            중복 확인
+          </DupBtn>
+        </DupContainer>
+
+        <Text>
+          비밀번호<Star>*</Star>
+        </Text>
+        <Input
+          type="password"
+          placeholder="비밀번호 입력(문자, 숫자 포함 8-20자"
+        ></Input>
+        <Text>
+          비밀번호 확인<Star>*</Star>
+        </Text>
+        <Input type="password" placeholder="비밀번호 재입력" />
+
+        <Text>
+          닉네임<Star>*</Star>
+        </Text>
+        <DupContainer>
+          <DupInput placeholder="닉네임 입력" />
+          <DupBtn
+            onClick={() => {
+              alert("닉네임이 중복되지 않습니다.");
+            }}
+          >
+            중복 확인
+          </DupBtn>
+        </DupContainer>
+
+        <Text>전화번호</Text>
+        <Input placeholder="전화번호 입력('-'제외 11자리" />
+
+        <Text>
+          이메일<Star>*</Star>
+        </Text>
+        <EmailContainer>
+          <EmailInput placeholder="이메일 입력" />
+          <At> @ </At>
+          <EmailInput placeholder="(직접 입력)" />
+        </EmailContainer>
+        <EmailNotice>
+          이메일 주소는 아이디/비밀번호 찾기에 꼭 필요한 정보이니 입력해주시면
+          도움이 됩니다.
+        </EmailNotice>
+        <SubmitBtn type="submit">가입하기</SubmitBtn>
+      </SignUpForm>
+    </SignUpContainer>
+  );
+}
+
+export { SignUp, SignUpEx };
 
 const SignUpContainer = styled.div`
   position: absolute;

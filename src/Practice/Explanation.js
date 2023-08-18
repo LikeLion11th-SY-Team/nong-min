@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import MyPage from "../View/MyPage";
-import NavBar from "../Component/NavBar";
+import { SignUpEx } from "../Component/SignUp";
 
 function Explanation(props) {
-  console.log(props.none === "1");
   return (
     <>
-      <Img src={props.src} opacity={props.opacity} />
-      {/* <ComponentContainer>
-        <MyPage />
-      </ComponentContainer> */}
+      {props.exercise === "signup" ? (
+        <ComponentContainer opacity={props.opacity}>
+          <SignUpEx />
+        </ComponentContainer>
+      ) : (
+        <Img src={props.src} opacity={props.opacity} />
+      )}
       <ExplainContainer none={props.none}>
         <CenterContainer>
           <TutorContainer opacity={props.opacity}>
@@ -63,6 +64,8 @@ const ComponentContainer = styled.div`
   transform: translate(-50%);
   opacity: ${({ opacity }) => (opacity === "1" ? "0.4" : "1")};
   overflow: auto;
+
+  display: flex;
 `;
 
 const FocusImg = styled.div`
