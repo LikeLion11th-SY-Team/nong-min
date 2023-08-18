@@ -44,7 +44,7 @@ function Step1() {
             info1="먼저, 상단의"
             info2="로그인 버튼을"
             info3="눌러주세요."
-            src="/images/home_view.png"
+            src="/images/view_home.png"
             none="1"
           />
         ) : page === 2 ? (
@@ -52,7 +52,7 @@ function Step1() {
             info1="로그인 화면에서"
             info2="회원가입 버튼을"
             info3="눌러주세요."
-            src="/images/home_view.png"
+            src="/images/view_login.png"
             none="1"
           />
         ) : page === 3 ? (
@@ -60,7 +60,7 @@ function Step1() {
             info1="아이디를 입력한 후"
             info2="중복 확인 버튼을 눌러서"
             info3="사용 가능한지 확인하세요."
-            src="/images/home_view.png"
+            src="/images/view_signup.png"
             none="1"
           />
         ) : page === 4 ? (
@@ -71,7 +71,7 @@ function Step1() {
             info4="아이디는 최소 6자에서 최대"
             info5="20자까지 설정할 수 있습니다."
             info6="원하는 길이로 선택해주세요!"
-            src="/images/home_view.png"
+            src="/images/view_signup.png"
             opacity="1"
           />
         ) : page === 5 ? (
@@ -79,7 +79,7 @@ function Step1() {
             info1="비밀번호를 설정한 후,"
             info2="동일한 비밀번호를 한 번 더"
             info3="‘비밀번호 확인’란에 입력하세요."
-            src="/images/home_view.png"
+            src="/images/view_signup.png"
             none="1"
           />
         ) : page === 6 ? (
@@ -90,7 +90,7 @@ function Step1() {
             info4="비밀번호는 8~20자의 길이여야 하며,"
             info5="‘문자’와 ‘숫자’를 반드시 혼합해서"
             info6="사용해야 합니다."
-            src="/images/home_view.png"
+            src="/images/view_signup.png"
             opacity="1"
           />
         ) : page === 7 ? (
@@ -100,7 +100,7 @@ function Step1() {
             info3="‘비밀번호 확인’란에 입력하세요."
             info4="(예시)"
             info5="1004천사 / 121314ag / s영0808"
-            src="/images/home_view.png"
+            src="/images/view_signup.png"
             opacity="1"
           />
         ) : page === 8 ? (
@@ -108,7 +108,7 @@ function Step1() {
             info1="사용할 닉네임을 입력한 후"
             info2="중복 확인 버튼을 눌러서"
             info3="사용 가능한지 확인하세요."
-            src="/images/home_view.png"
+            src="/images/view_signup2.png"
             none="1"
           />
         ) : page === 9 ? (
@@ -116,7 +116,7 @@ function Step1() {
             info1="닉네임은 회원가입 후"
             info2="‘계정 관리’에서"
             info3="수정할 수 있습니다!"
-            src="/images/home_view.png"
+            src="/images/view_signup2.png"
             none="1"
           />
         ) : page === 10 ? (
@@ -124,7 +124,7 @@ function Step1() {
             info1="닉네임, 전화번호,"
             info2="이메일을 모두 입력했다면"
             info3="‘가입하기’ 버튼을 눌러주세요!"
-            src="/images/home_view.png"
+            src="/images/view_signup2.png"
             none="1"
           />
         ) : page === 11 ? (
@@ -135,7 +135,7 @@ function Step1() {
             info4="'전화번호', '이메일'은"
             info5="필수 입력 항목은 아니지만,"
             info6="비밀번호 찾기 시 사용 가능합니다!"
-            src="/images/home_view.png"
+            src="/images/view_signup2.png"
             opacity="1"
           />
         ) : page === 12 ? (

@@ -15,7 +15,7 @@ function Step0() {
           info1="주소창 또는 주소 바로 옆에"
           info2="위치한 별표 모양의"
           info3="아이콘을 클릭해주세요."
-          src="/images/home_view.png"
+          src="/images/view_home.png"
           none="1"
         />
       </ContentsContainer>
