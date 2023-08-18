@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BaseUrl } from "../API/Api";
 
 import { styled } from "styled-components";
 
@@ -11,23 +10,12 @@ function SignUp() {
     pw: "",
     confirmPw: "",
     nickname: "",
-    name: "",
     phoneNumber: "",
     emailId: "",
     platformAddress: "",
-    crop: "",
   });
-  const {
-    id,
-    pw,
-    confirmPw,
-    nickname,
-    name,
-    phoneNumber,
-    emailId,
-    platformAddress,
-    crop,
-  } = registerData;
+
+  const { id, pw, confirmPw, nickname, phoneNumber, emailId, platformAddress } = registerData;
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -42,10 +30,11 @@ function SignUp() {
   const onCheckId = async (event) => {
     event.preventDefault();
     // 아이디 중복 확인 로직
-    try {
-      const res = await axios.post(`${BaseUrl}/auth/api/check/id`, { id });
 
-      if (res.status === 200) {
+    try{
+      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/api/check/id/`, { id });
+      
+      if(res.status === 200){
         setCheckId(true);
         alert("사용 가능한 아이디입니다.");
       } else {
@@ -61,12 +50,11 @@ function SignUp() {
     // 닉네임 중복 확인 로직
     // 중복 확인 로직은 데이터만 넘기고 백에서 성공시 200 넘겨주기로 함
     // 성공시 set 통해서 true값 저장 후 submit함수에서 반영
-    try {
-      const res = await axios.post(`${BaseUrl}/auth/api/check/nickname`, {
-        nickname,
-      });
-
-      if (res.status === 200) {
+    
+    try{
+      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/api/check/nickname/`, { nickname });
+      
+      if(res.status === 200){
         setCheckNickname(true);
         alert("사용 가능한 닉네임입니다.");
       } else {
@@ -95,17 +83,8 @@ function SignUp() {
     if (pw !== confirmPw) {
       return alert("비밀번호 확인이 올바르지 않습니다.");
     }
-    if (
-      !id ||
-      !pw ||
-      !confirmPw ||
-      !nickname ||
-      !name ||
-      !phoneNumber ||
-      !emailId ||
-      !platformAddress ||
-      !crop
-    ) {
+
+    if (!id || !pw || !confirmPw || !nickname || !phoneNumber || !emailId || !platformAddress ) {
       alert("필수정보(*)를 입력해주세요.");
       return;
     }
@@ -116,15 +95,13 @@ function SignUp() {
       alert("닉네임 중복확인을 해주세요.");
     }
 
-    try {
-      const res = await axios.post(`${BaseUrl}/auth/signup`, {
+    try{
+      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/signup/`, {
         id,
         pw,
         nickname,
-        name,
         phoneNumber,
-        email: fullEmail,
-        crop,
+        fullEmail: fullEmail,
       });
 
       if (res.status === 200) {

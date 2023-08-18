@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import SideMenu from "../MyPage/SideMenu";
-import { EditData, EditPw } from "../MyPage/MyPageEdit";
+import { EditData } from "../MyPage/MyPageEdit";
+
+import PostForm from "../Community/PostForm";
 
 import { Routes, Route } from "react-router-dom";
+import CommunityBoard from "../Community/CommunityBoard";
+import PostDetail from "../Community/PostDetail";
 
 function Community() {
   return (
@@ -10,10 +14,14 @@ function Community() {
       <BkImage />
       <ItemsContainer>
         <SideMenu op="community" />
-        <Routes>
-          <Route path="/free" element={<EditData />} />
-          <Route path="/info" element={<EditPw />} />
-        </Routes>
+        <BoardContainer>
+          <Routes>
+            <Route path="/free" element={<CommunityBoard menu="free" />} />
+            <Route path="/info" element={<CommunityBoard menu="info" />} />
+            <Route path="/write" element={<PostForm />} />
+            <Route path="/:category/:pk" element={<PostDetail />} />
+          </Routes>
+        </BoardContainer>
       </ItemsContainer>
     </Container>
   );
@@ -44,6 +52,21 @@ const ItemsContainer = styled.div`
 
   left: 50%;
   transform: translate(-50%);
+`;
+
+const BoardContainer = styled.div`
+  width: 61.9375rem;
+  height: 36em;
+
+  border-radius: 0.75rem;
+  border: 1px solid #dee2e6;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
 `;
 
 export default Community;

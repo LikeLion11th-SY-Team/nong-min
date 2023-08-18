@@ -1,47 +1,75 @@
 import styled from "styled-components";
+import Menu from "../Component/Menu";
 
 function Home() {
   return (
-    <BoardContainer>
-      <BoardImage>
-        <BoardInfo>
-          우리 모두가 이어질 수 있도록
-          <BoardTitle>
-            웹사이트 학습 기능 탑재 커뮤니티, "서비스 이름"
-          </BoardTitle>
-        </BoardInfo>
-      </BoardImage>
-    </BoardContainer>
+    <Container>
+      <BkImage />
+      <ItemsContainer>
+        <BoardContainer>
+          <BoardInfo>
+            우리 모두가 이어질 수 있도록
+           <BoardTitle>웹사이트 학습 기능 탑재 커뮤니티, "한걸음씩"</BoardTitle>
+          </BoardInfo>
+        </BoardContainer>
+
+        <BottomContainer>
+          <MenuContainer>
+            <Menu
+              title="학습 공간"
+              infoTop="전반적인 웹사이트 사용 방법을"
+              infoBottom="단계별로 쉽게 이해할 수 있게 도와줍니다."
+              link="/practice"
+            />
+            <Menu
+              title="커뮤니티"
+              infoTop="자유 게시판, 정보공유 게시판 등의"
+              infoBottom="소통의 공간을 제공합니다."
+              link="/community/free"
+            />
+            <Menu
+              title="계정 관리"
+              infoTop="회원가입, 로그인/로그아웃, 마이페이지"
+              link="/mypage/editdata"
+            />
+          </MenuContainer>
+        </BottomContainer>
+      </ItemsContainer>
+    </Container>
   );
 }
 
-const BoardContainer = styled.div`
-  height: 100%; /*edited*/
+const Container = styled.div`
+  height: 100%;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
 `;
 
-const BoardImage = styled.div`
+const BkImage = styled.div`
   background: url(/images/background.png);
-  height: 50rem; /*80rem*/
+  height: 50rem;
   margin: 0;
 
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center;
   background-size: cover;
+`;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const ItemsContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  top: 15.16rem;
+
+  left: 50%;
+  transform: translate(-50%);
+`;
+
+const BoardContainer = styled.div`
+  margin: 0 auto;
+  margin-bottom: 22rem;
 `;
 
 const BoardInfo = styled.div`
-  width: 38.9375rem;
-  height: 17.6875rem;
-
   color: #002d61;
   text-align: center;
   font-size: 1.5625rem;
@@ -54,6 +82,15 @@ const BoardInfo = styled.div`
 const BoardTitle = styled.div`
   font-size: 1.875rem;
   margin-top: 1rem;
+`;
+
+const BottomContainer = styled.div`
+  margin: 0 auto;
+`;
+
+const MenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default Home;

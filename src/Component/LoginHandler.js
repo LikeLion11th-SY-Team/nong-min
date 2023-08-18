@@ -3,32 +3,35 @@ import { useEffect } from "react";
 import axios from "axios";
 import { setCookie } from "../API/Cookie";
 
-import { REDIRECT_URI } from "../API/KaKaoApi";
-
 function LoginHandler(props) {
   const navigation = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
+  console.log(code);
+
+  const kakaoLogin = async () => {
+    await axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_BaseUrl}/auth_kakao/api/kakao-login/`, 
+      data: { 'authorization_code': code }
+      /*headers: {
+        //"Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 전송
+        //"Access-Control-Allow-Origin": "*",
+        Authorization: `${code}`
+      },
+      */
+    }).then((res) => {
+      const accessToken = res.data.access;
+      const refreshToken = res.data.refresh;
+      setCookie("accessToken", accessToken, { path: "/" });
+      setCookie("refreshToken", refreshToken, { path: "/" });
+      navigation("/home");
+    })
+  };
 
   useEffect(() => {
-    const kakaoLogin = async () => {
-      await axios({
-        method: "GET",
-        url: `${REDIRECT_URI}/?code=${code}`,
-        headers: {
-          "Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 전송
-          "Access-Control-Allow-Origin": "*",
-        },
-      }).then((res) => {
-        const accessToken = res.data.access;
-        const refreshToken = res.data.refresh;
-        setCookie("accessToken", accessToken, { path: "/" });
-        setCookie("refreshToken", refreshToken, { path: "/" });
-        navigation("/home");
-      })
-    };
     kakaoLogin();
-  }, [props.history])
+  }, [])
   return (
     <div>
       loading

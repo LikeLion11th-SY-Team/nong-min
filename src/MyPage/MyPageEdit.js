@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BaseUrl } from "../API/Api";
 import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import { getCookie } from "../API/Cookie";
 
@@ -27,7 +26,7 @@ function EditData() {
 
   async function getUser() {
     await axios
-      .get(`${BaseUrl}/auth/api/userinfo/`, {
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/userinfo/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
@@ -70,7 +69,7 @@ function EditData() {
   const handleNicknameError = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${BaseUrl}/auth/api/check/nickname/`, {
+      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/api/check/nickname/`, {
         nick_name,
       });
 
@@ -98,7 +97,7 @@ function EditData() {
     else if (!checkNickname) return alert("닉네임 중복확인을 해주세요.");
     else {
       try {
-        const response = await axios.patch(`${BaseUrl}/auth/userinfo/`, {
+        const response = await axios.patch(`${process.env.REACT_APP_BaseUrl}/auth/userinfo/`, {
           nick_name,
           phone_number,
           email: fullEmail,
@@ -222,7 +221,7 @@ function EditPw() {
     else {
       try {
         const response = await axios.post(
-          `${BaseUrl}/auth/userinfo/changepassword/`,
+          `${process.env.REACT_APP_BaseUrl}/auth/userinfo/changepassword/`,
           {}
         );
 
