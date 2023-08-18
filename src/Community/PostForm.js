@@ -12,8 +12,8 @@ function PostForm() {
     const author = res.data.user_id;
   }
   */
-  // 
-  const getPost = axios.get(`${BaseUrl}/recommend/write/`);
+  // const getPost = axios.get(`${BaseUrl}/recommend/write/`);
+  
   const [post, setPost] = useState({
     title: '',
     category: '',
@@ -69,7 +69,10 @@ function PostForm() {
     })
     
     try{
-      const res = await axios.post(`${BaseUrl}/community/create`, {newPost})
+      const res = await axios.post(
+        `${BaseUrl}/community/create/`,
+        { title, contents, category }
+      )
       alert('등록되었습니다');
       navigate(-1); // 커뮤니티, 이전페이지, 작성한 게시글 중 어디로 링크할지 논의 필요
     } catch(err){
