@@ -4,7 +4,6 @@ import axios from "axios";
 import { getCookie } from "../API/Cookie";
 
 import styled from "styled-components";
-import { BaseUrl } from "../API/Api";
 
 function PostForm() {
   const access = getCookie("accessToken");
@@ -66,7 +65,7 @@ function PostForm() {
     
     try{
       const res = await axios.post(
-        `${BaseUrl}/community/create/`,
+        `${process.env.REACT_APP_BaseUrl}/community/create/`,
         { title, contents, category },
         {
           headers: {

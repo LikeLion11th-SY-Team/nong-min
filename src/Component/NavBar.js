@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { BaseUrl } from "../API/Api";
 import { getCookie } from "../API/Cookie";
 import axios from "axios";
 
@@ -20,7 +19,7 @@ function NavBar() {
 
   async function getNickname() {
     await axios
-      .get(`${REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {

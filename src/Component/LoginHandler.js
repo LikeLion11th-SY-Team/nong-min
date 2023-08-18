@@ -3,9 +3,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import { setCookie } from "../API/Cookie";
 
-import { REDIRECT_URI } from "../API/KaKaoApi";
-import { BaseUrl } from "../API/Api";
-
 function LoginHandler(props) {
   const navigation = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { setCookie, getCookie, removeCookie } from "./API/Cookie";
 import axios from "axios";
-import { BaseUrl } from "./API/Api";
 
 import NavBar from "./Component/NavBar";
 import Home from "./View/Home.js";
