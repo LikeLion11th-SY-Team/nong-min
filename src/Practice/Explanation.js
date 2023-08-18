@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import MyPage from "../View/MyPage";
+import NavBar from "../Component/NavBar";
 
 function Explanation(props) {
+  console.log(props.none === "1");
   return (
     <>
       <Img src={props.src} opacity={props.opacity} />
-      {/*       <FocusImg />
-       */}{" "}
-      <ExplainContainer>
+      {/* <ComponentContainer>
+        <MyPage />
+      </ComponentContainer> */}
+      <ExplainContainer none={props.none}>
         <CenterContainer>
           <TutorContainer opacity={props.opacity}>
             <BubbleContainer op="1">
@@ -18,16 +22,18 @@ function Explanation(props) {
             </BubbleContainer>
             <Tutor op="1" />
           </TutorContainer>
-          <TutorContainer none={props.none}>
-            <BubbleContainer op="2">
-              <InfoContainer op="2">
-                {props.info4}
-                <br /> {props.info5}
-                <br /> {props.info6}
-              </InfoContainer>
-            </BubbleContainer>
-            <Tutor op="2" />
-          </TutorContainer>
+          {props.none !== "1" ? (
+            <TutorContainer>
+              <BubbleContainer op="2">
+                <InfoContainer op="2">
+                  {props.info4}
+                  <br /> {props.info5}
+                  <br /> {props.info6}
+                </InfoContainer>
+              </BubbleContainer>
+              <Tutor op="2" />
+            </TutorContainer>
+          ) : null}
         </CenterContainer>
       </ExplainContainer>
     </>
@@ -44,6 +50,19 @@ const Img = styled.img`
   left: 55%;
   transform: translate(-50%);
   opacity: ${({ opacity }) => (opacity === "1" ? "0.4" : "1")};
+`;
+
+const ComponentContainer = styled.div`
+  width: 48rem;
+  height: 30rem;
+
+  position: absolute;
+
+  top: 10%;
+  left: 55%;
+  transform: translate(-50%);
+  opacity: ${({ opacity }) => (opacity === "1" ? "0.4" : "1")};
+  overflow: auto;
 `;
 
 const FocusImg = styled.div`
@@ -66,7 +85,7 @@ const ExplainContainer = styled.div`
   bottom: 0;
   z-index: 1;
 
-  width: 100%;
+  width: ${({ none }) => (none === "1" ? "auto" : "100%")};
 `;
 
 const BubbleContainer = styled.div`

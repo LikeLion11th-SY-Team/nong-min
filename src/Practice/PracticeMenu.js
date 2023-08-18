@@ -60,16 +60,10 @@ function PracticeMenu(props) {
                 일반 로그인
               </Menu>
               <Menu
-                to={"/practice/exercise?step=2.3"}
-                cur={props.step === "2.3"}
+                to={"/practice/exercise?step=2.5"}
+                cur={props.step === "2.5"}
               >
                 카카오톡으로 로그인
-              </Menu>
-              <Menu
-                to={"/practice/exercise?step=2.6"}
-                cur={props.step === "2.6"}
-              >
-                네이버로 로그인
               </Menu>
             </DropContainer>
           </MenuOption>
