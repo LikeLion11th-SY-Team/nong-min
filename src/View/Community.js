@@ -5,6 +5,7 @@ import { EditData } from "../MyPage/MyPageEdit";
 import PostForm from "../Community/PostForm";
 
 import { Routes, Route } from "react-router-dom";
+import CommunityBoard from "../Community/CommunityBoard";
 
 function Community() {
   return (
@@ -14,8 +15,8 @@ function Community() {
         <SideMenu op="community" />
         <BoardContainer>
           <Routes>
-            <Route path="/free" element={<EditData />} />
-            <Route path="/info" element={<EditData />} />
+            <Route path="/free" element={<CommunityBoard menu="free" />} />
+            <Route path="/info" element={<CommunityBoard menu="info" />} />
             <Route path="/write" element={<PostForm />} />
           </Routes>
         </BoardContainer>
