@@ -31,8 +31,8 @@ function Login() {
     try {
       // 로그인 시 쿠키에 토큰 저장
       const res = await axios.post(`${BaseUrl}/auth/login/`, { id, pw });
-      const accessToken = res.data.access;
-      const refreshToken = res.data.refresh;
+      const accessToken = res.data.token.access;
+      const refreshToken = res.data.token.refresh;
 
       // 모든 경로에서 토큰 접근 가능
       setCookie("accessToken", accessToken, { path: "/" });
