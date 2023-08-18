@@ -17,6 +17,11 @@ function Home() {
 
 const BoardContainer = styled.div`
   height: 100%; /*edited*/
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 `;
 
 const BoardImage = styled.div`

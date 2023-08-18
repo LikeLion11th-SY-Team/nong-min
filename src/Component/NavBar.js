@@ -42,10 +42,10 @@ function NavBar() {
           </DropDown>
         </div>
         <div className="userContainer">
-          <NavMenu to={"/mypage"}>마이페이지</NavMenu>
+          <NavMenu to={"/mypage"}>계정관리</NavMenu>
           <DropDown hover={hover}>
             <Li>
-              <DropDownMenu>개인정보 변경</DropDownMenu>
+              <DropDownMenu>마이페이지</DropDownMenu>
             </Li>
           </DropDown>
         </div>
@@ -65,19 +65,21 @@ const NavContainer = styled.div`
   width: 80%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   padding-left: 10%;
   padding-right: 10%;
+  padding-top: 2.94rem;
 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 2;
 
   &:hover {
-    background-color: #fff;
-    height: 14.25rem;
+    border-radius: 0rem 0rem 0.9375rem 0.9375rem;
+    background: #fff;
+    /* height: 14.25rem; */
 
     .DropDown {
       display: block;
@@ -95,9 +97,6 @@ const NavLogo = styled(Link)`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.01125rem;
-
-  position: fixed;
-  top: 2.5rem;
 `;
 
 const MenuContainer = styled.div`
@@ -106,8 +105,6 @@ const MenuContainer = styled.div`
 
   width: 60%;
   text-align: center;
-
-  padding-top: 2.5rem;
 `;
 
 const NavMenu = styled(Link)`
@@ -124,7 +121,7 @@ const NavMenu = styled(Link)`
 const DropDown = styled.ul`
   display: ${({ hover }) => (hover === 0 ? "none" : "block")};
   padding-left: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 `;
 
 const DropDownMenu = styled(Link)`

@@ -32,39 +32,37 @@ function SignUp(){
   const onCheckId = async (event) => {
     event.preventDefault();
     // 아이디 중복 확인 로직
-    /*
     try{
-      const res = await axios.post(`${BaseUrl/어쩌구}`, { id });
-      setCheckId(res.duplicated);
+      const res = await axios.post(`${BaseUrl}/auth/api/check/id`, { id });
       
-      if(checkId){
-        alert("중복된 아이디입니다. 다른 닉네임을 사용해주세요.")
-      } else{
+      if(res.status === 200){
+        setCheckId(true);
         alert("사용 가능한 아이디입니다.")
+      } else{
+        alert("중복된 아이디입니다. 다른 닉네임을 사용해주세요.")
       }
     } catch(error){
-      alret("오류가 발생했습니다. 다시 시도해주세요.")
+      alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
-    */
   }
 
-  const onCheckNickname = (event) => {
+  const onCheckNickname = async (event) => {
     event.preventDefault();
     // 닉네임 중복 확인 로직
-    /*
+    // 중복 확인 로직은 데이터만 넘기고 백에서 성공시 200 넘겨주기로 함
+    // 성공시 set 통해서 true값 저장 후 submit함수에서 반영
     try{
-      const res = await axios.post(`${BaseUrl/어쩌구}`, { nickname });
-      setCheckNickname(res.duplicated);
+      const res = await axios.post(`${BaseUrl}/auth/api/check/nickname`, { nickname });
       
-      if(checkNickname){
-        alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.")
-      } else{
+      if(res.status === 200){
+        setCheckNickname(true);
         alert("사용 가능한 닉네임입니다.")
+      } else{
+        alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.")
       }
     } catch(error){
-      alret("오류가 발생했습니다. 다시 시도해주세요.")
+      alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
-    */
   }
 
   const navigation = useNavigate();
@@ -74,6 +72,7 @@ function SignUp(){
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/; // 비밀번호 정규식
     const fullEmail = `${emailId}@${platformAddress}`;
 
+    // 유효성 검사
     if(id.length < 6 || id.length > 20){
       return alert('아이디는 6-20자로 입력해주세요.')
     }
@@ -83,13 +82,19 @@ function SignUp(){
     if(pw !== confirmPw){
       return alert('비밀번호 확인이 올바르지 않습니다.')
     }
-    if (!id || !pw || !confirmPw || !nickname || !phoneNumber || !emailId || !platformAddress || !crop) {
+    if (!id || !pw || !confirmPw || !nickname || !name || !phoneNumber || !emailId || !platformAddress || !crop) {
       alert("필수정보(*)를 입력해주세요.");
       return;
     }
-    /*
+    if(!checkId){
+      alert("아이디 중복확인을 해주세요.")
+    }
+    if(!checkNickname){
+      alert("닉네임 중복확인을 해주세요.")
+    }
+
     try{
-      const res = await axios.post(${BaseUrl}/어쩌구, {
+      const res = await axios.post(`${BaseUrl}/auth/signup`, {
         id,
         pw,
         nickname,
@@ -108,7 +113,6 @@ function SignUp(){
     } catch(error){
       alert("오류가 발생했습니다. 다시 시도해주세요.")
     }
-    */
   };
 
   return(
