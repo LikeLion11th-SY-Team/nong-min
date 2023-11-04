@@ -13,8 +13,8 @@ function Log() {
   return (
     <Container>
       <ItemsContainer>
-        <StepContainer step="0">
-          <Step>
+        <StepContainer>
+          <Step step="0">
             {step === "0" ? (
               <Selected />
             ) : (
@@ -23,11 +23,11 @@ function Log() {
               </Icon>
             )}
           </Step>
-          <Info>(0단계) 쉽게 찾아오기</Info>
+          <Info curstep={step === "0"}>(0단계) 쉽게 찾아오기</Info>
         </StepContainer>
 
-        <StepContainer step="1">
-          <Step>
+        <StepContainer>
+          <Step step="1">
             {step === "1" ? (
               <Selected />
             ) : (
@@ -36,11 +36,11 @@ function Log() {
               </Icon>
             )}
           </Step>
-          <Info>(1단계) 회원가입</Info>
+          <Info curstep={step === "1"}>(1단계) 회원가입</Info>
         </StepContainer>
 
-        <StepContainer step="2">
-          <Step>
+        <StepContainer>
+          <Step step="2">
             {step === "2" ? (
               <Selected />
             ) : (
@@ -49,11 +49,11 @@ function Log() {
               </Icon>
             )}
           </Step>
-          <Info>(2단계) 로그인</Info>
+          <Info curstep={step === "2"}>(2단계) 로그인</Info>
         </StepContainer>
 
-        <StepContainer step="3">
-          <Step>
+        <StepContainer>
+          <Step step="3">
             {step === "3" ? (
               <Selected />
             ) : (
@@ -62,11 +62,11 @@ function Log() {
               </Icon>
             )}
           </Step>
-          <Info>(3단계) 커뮤니티 둘러보기</Info>
+          <Info curstep={step === "3"}>(3단계) 커뮤니티 둘러보기</Info>
         </StepContainer>
 
-        <StepContainer step="4">
-          <Step>
+        <StepContainer>
+          <Step step="4">
             {step === "4" ? (
               <Selected />
             ) : (
@@ -75,12 +75,12 @@ function Log() {
               </Icon>
             )}
           </Step>
-          <Info>(4단계) 글쓰기</Info>
+          <Info curstep={step === "4"}>(4단계) 글쓰기</Info>
         </StepContainer>
 
         <StepContainer step="5">
-          <Info>(5단계) 소통하기</Info>
-          <Step>
+          <Info curstep={step === "5"}>(5단계) 소통하기</Info>
+          <Step step="5">
             {step === "5" ? (
               <Selected />
             ) : (
@@ -92,8 +92,8 @@ function Log() {
         </StepContainer>
 
         <StepContainer step="6">
-          <Info>(6단계) 마이페이지 관리</Info>
-          <Step>
+          <Info curstep={step === "6"}>(6단계) 마이페이지 관리</Info>
+          <Step step="6">
             {step === "6" ? (
               <Selected />
             ) : (
@@ -129,22 +129,8 @@ const StepContainer = styled.div`
   height: 13%;
 
   display: flex;
-
-  /* padding-left: ${({ step }) =>
-    step === "0" || step === "4"
-      ? "50%"
-      : step === "1" || step === "3"
-      ? "30%"
-      : step === "2"
-      ? "10%"
-      : "auto"};
-
-  padding-right: ${({ step }) =>
-    step === "5" ? "10%" : step === "6" ? "30%" : "auto"};
-
   justify-content: ${({ step }) =>
-    step === "5" || step === "6" ? "right" : "auto"}; */
-  justify-content: center;
+    step === "5" || step === "6" ? "right" : "left"};
 `;
 
 const Step = styled.div`
@@ -158,6 +144,18 @@ const Step = styled.div`
   background-image: url(/images/step.png);
   background-repeat: no-repeat;
   background-position: bottom;
+
+  margin-left: ${({ step }) =>
+    step === "0" || step === "4"
+      ? "50%"
+      : step === "1" || step === "3"
+      ? "30%"
+      : step === "2"
+      ? "10%"
+      : "0"};
+
+  margin-right: ${({ step }) =>
+    step === "5" ? "10%" : step === "6" ? "30%" : "0"};
 `;
 
 const Icon = styled.div`
@@ -166,7 +164,7 @@ const Icon = styled.div`
   font-size: 2rem;
   font-weight: 400;
 
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 `;
 
 const Selected = styled.div`
@@ -179,8 +177,8 @@ const Selected = styled.div`
 `;
 
 const Info = styled.div`
-  color: #fff;
-  font-size: 1.6875rem;
+  color: ${({ curstep }) => (curstep ? "#fee500" : "#fff")};
+  font-size: ${({ curstep }) => (curstep ? "2rem" : "1.6875rem")};
   font-weight: 400;
 
   display: flex;
