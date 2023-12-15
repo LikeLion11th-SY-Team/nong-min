@@ -1,6 +1,27 @@
+import { useState,useEffect } from "react";
+import { getCookie } from "../API/Cookie";
+import axios from "axios";
 import { styled } from "styled-components";
 
 function DetailCard({ pk, category, title, writer_nickname, created_at, contents, likes_count}) {
+  const [nickname, setNickname] = useState();
+  const accessToken = getCookie("accessToken");
+  useEffect(() => {
+    getNickname();
+  }, []);
+  async function getNickname() {
+    await axios
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        setNickname(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <PostDetailContainer>
       <PostHeader>
@@ -18,7 +39,7 @@ function DetailCard({ pk, category, title, writer_nickname, created_at, contents
         <PostContent>{contents}</PostContent>
         <PostLike>
           <LikeBtn></LikeBtn>
-          <HeartImg src="images/heart.png" alt="하트" />
+          <i class="fa-regular fa-heart"></i>
           <LikeText>좋아요 {likes_count}</LikeText>
         </PostLike>
         <CommentsContainer>
@@ -27,7 +48,9 @@ function DetailCard({ pk, category, title, writer_nickname, created_at, contents
       </PostBody>
 
       <CommentForm>
-
+        <UserNickName>{nickname}</UserNickName>
+        <CommentInput></CommentInput>
+        <CommentSubmitBtn>등록</CommentSubmitBtn>
       </CommentForm>
     </PostDetailContainer>
   )
@@ -103,7 +126,6 @@ const PostLike = styled.div`
 const LikeBtn = styled.button`
   display: none;
 `
-const HeartImg = styled.img``
 const LikeText = styled.div`
   color: #152536;
   font-size: 0.9375rem;
@@ -112,6 +134,16 @@ const LikeText = styled.div`
   line-height: 144.023%; /* 1.35019rem */
   letter-spacing: -0.00563rem;
 `
-const CommentsContainer = styled.div``
+const CommentsContainer = styled.div`
+`
 const CommentHeader = styled.div``
-const CommentForm = styled.div``
+const CommentForm = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  border-radius: 0.9375rem;
+  border: 1px solid #828282;
+  background: #FFF;
+`
+const UserNickName = styled.div``
+const CommentInput = styled.input``
+const CommentSubmitBtn = styled.button``

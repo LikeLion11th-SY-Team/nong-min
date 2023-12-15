@@ -140,7 +140,7 @@ function SignUp() {
           value={pw}
           onChange={onChange}
           type="password"
-          placeholder="비밀번호 입력(문자, 숫자 포함 8-20자"
+          placeholder="비밀번호 입력(문자, 숫자 포함 8-20자)"
         ></Input>
         <Text>
           비밀번호 확인<Star>*</Star>
