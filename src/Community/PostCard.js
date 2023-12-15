@@ -12,7 +12,7 @@ function PostCard(props) {
     }
     //아닌 경우 mm/dd로 표시
     else {
-      return format(postDate, "MM/dd");
+      return format(postDate, "yy.MM.dd");
     }
   };
 
