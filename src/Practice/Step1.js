@@ -12,34 +12,6 @@ function Step1() {
     <Container>
       <ContentsContainer>
         {page === 0 ? (
-          <>
-            <InfoContainer>
-              <BubbleContainer>
-                <Bubble>
-                  <Info>
-                    카카오 계정이
-                    <Highlight>없다면</Highlight>
-                    이쪽을 선택해주세요!
-                  </Info>
-                </Bubble>
-                <Icon op="user" />
-              </BubbleContainer>
-              <BubbleContainer>
-                <Bubble>
-                  <Info>
-                    카카오 계정이
-                    <Highlight>있다면</Highlight>
-                    이쪽을 선택해주세요!
-                  </Info>
-                </Bubble>
-                <Icon op="kakao" />
-              </BubbleContainer>
-            </InfoContainer>
-            <CharacterContainer>
-              <Character />
-            </CharacterContainer>
-          </>
-        ) : page === 1 ? (
           <Explanation
             info1="먼저, 상단의"
             info2="로그인 버튼을"
@@ -47,7 +19,7 @@ function Step1() {
             src="/images/view_home.png"
             none="1"
           />
-        ) : page === 2 ? (
+        ) : page === 1 ? (
           <Explanation
             info1="로그인 화면에서"
             info2="회원가입 버튼을"
@@ -55,7 +27,7 @@ function Step1() {
             src="/images/view_login.png"
             none="1"
           />
-        ) : page === 3 ? (
+        ) : page === 2 ? (
           <Explanation
             info1="아이디를 입력한 후"
             info2="중복 확인 버튼을 눌러서"
@@ -63,7 +35,7 @@ function Step1() {
             src="/images/view_signup.png"
             none="1"
           />
-        ) : page === 4 ? (
+        ) : page === 3 ? (
           <Explanation
             info1="아이디를 입력한 후"
             info2="중복 확인 버튼을 눌러서"
@@ -74,7 +46,7 @@ function Step1() {
             src="/images/view_signup.png"
             opacity="1"
           />
-        ) : page === 5 ? (
+        ) : page === 4 ? (
           <Explanation
             info1="비밀번호를 설정한 후,"
             info2="동일한 비밀번호를 한 번 더"
@@ -82,7 +54,7 @@ function Step1() {
             src="/images/view_signup.png"
             none="1"
           />
-        ) : page === 6 ? (
+        ) : page === 5 ? (
           <Explanation
             info1="비밀번호를 설정한 후,"
             info2="동일한 비밀번호를 한 번 더"
@@ -93,7 +65,7 @@ function Step1() {
             src="/images/view_signup.png"
             opacity="1"
           />
-        ) : page === 7 ? (
+        ) : page === 6 ? (
           <Explanation
             info1="비밀번호를 설정한 후,"
             info2="동일한 비밀번호를 한 번 더"
@@ -103,7 +75,7 @@ function Step1() {
             src="/images/view_signup.png"
             opacity="1"
           />
-        ) : page === 8 ? (
+        ) : page === 7 ? (
           <Explanation
             info1="사용할 닉네임을 입력한 후"
             info2="중복 확인 버튼을 눌러서"
@@ -111,7 +83,7 @@ function Step1() {
             src="/images/view_signup2.png"
             none="1"
           />
-        ) : page === 9 ? (
+        ) : page === 8 ? (
           <Explanation
             info1="닉네임은 회원가입 후"
             info2="‘계정 관리’에서"
@@ -119,7 +91,7 @@ function Step1() {
             src="/images/view_signup2.png"
             none="1"
           />
-        ) : page === 10 ? (
+        ) : page === 9 ? (
           <Explanation
             info1="닉네임, 전화번호,"
             info2="이메일을 모두 입력했다면"
@@ -127,7 +99,7 @@ function Step1() {
             src="/images/view_signup2.png"
             none="1"
           />
-        ) : page === 11 ? (
+        ) : page === 10 ? (
           <Explanation
             info1="닉네임, 전화번호,"
             info2="이메일을 모두 입력했다면"
@@ -138,7 +110,7 @@ function Step1() {
             src="/images/view_signup2.png"
             opacity="1"
           />
-        ) : page === 12 ? (
+        ) : page === 11 ? (
           <Explanation
             info1="아이디를 입력한 후"
             info2="중복 확인 버튼을 눌러서"
@@ -146,7 +118,7 @@ function Step1() {
             exercise="signup"
             none="1"
           />
-        ) : page === 13 ? (
+        ) : page === 12 ? (
           <Explanation
             info1="비밀번호를 설정한 후,"
             info2="동일한 비밀번호를 한 번 더"
@@ -154,7 +126,7 @@ function Step1() {
             exercise="signup"
             none="1"
           />
-        ) : page === 14 ? (
+        ) : page === 13 ? (
           <Explanation
             info1="사용할 닉네임을 입력한 후"
             info2="중복 확인 버튼을 눌러서"
@@ -162,11 +134,35 @@ function Step1() {
             exercise="signup"
             none="1"
           />
+        ) : page === 14 ? (
+          <Explanation
+            info1="카카오 계정이 있는 경우,"
+            info2="'카카오 로그인'을 통해서도"
+            info3="회원가입이 가능합니다."
+            exercise="signup"
+            none="1"
+          />
+        ) : page === 15 ? (
+          <Explanation
+            info1="카카오 계정의 아이디와"
+            info2="비밀번호를 입력하여"
+            info3="카카오 로그인을 해주세요!"
+            exercise="signup"
+            none="1"
+          />
+        ) : page === 16 ? (
+          <Explanation
+            info1="필수 약관에 동의를 누르고,"
+            info2="다음 단계로 넘어가면"
+            info3="회원가입이 완료됩니다!"
+            exercise="signup"
+            none="1"
+          />
         ) : (
           <Explanation
-            info1="사용할 닉네임을 입력한 후"
-            info2="중복 확인 버튼을 눌러서"
-            info3="사용 가능한지 확인하세요."
+            info1="필수 약관에 동의를 누르고,"
+            info2="다음 단계로 넘어가면"
+            info3="회원가입이 완료됩니다!"
             exercise="signup"
             none="1"
             opacity="1"
@@ -178,12 +174,12 @@ function Step1() {
       </NextBtn>
 
       <NextStepBtn
-        page={page === 15}
+        page={page === 17}
         onClick={() => navigate("/practice/log?step=1")}
       >
         다음 단계로
       </NextStepBtn>
-      <NextStepBtn page={page === 11} onClick={() => setPage((cur) => cur + 1)}>
+      <NextStepBtn page={page === 10} onClick={() => setPage((cur) => cur + 1)}>
         연습해보기
       </NextStepBtn>
     </Container>
@@ -197,88 +193,6 @@ const Container = styled.div`
 
 const ContentsContainer = styled.div`
   height: 100%;
-`;
-
-const InfoContainer = styled.div`
-  width: 100%;
-  height: 35%;
-
-  display: flex;
-  justify-content: space-around;
-`;
-
-const BubbleContainer = styled.div`
-  height: 100%;
-  width: 25%;
-`;
-
-const Bubble = styled.div`
-  border-radius: 50%;
-  background: #002d61;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 80%;
-  width: 100%;
-
-  margin: 0 auto;
-  margin-bottom: 2rem;
-`;
-
-const IconContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  height: 10%;
-`;
-
-const Icon = styled.div`
-  height: 5rem;
-  width: 5rem;
-
-  background-image: ${({ op }) =>
-    op === "user"
-      ? "url(/images/user_circle.jpg)"
-      : "url(/images/kakao_icon.jpg)"};
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  margin: 0 auto;
-`;
-
-const Info = styled.div`
-  color: #fff;
-  text-align: center;
-  font-size: 1.125rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  white-space: nowrap;
-`;
-
-const Highlight = styled.div`
-  color: #fbff45;
-`;
-
-const CharacterContainer = styled.div`
-  height: 65%;
-  width: 100%;
-
-  margin: 0 auto;
-`;
-
-const Character = styled.div`
-  height: 100%;
-  width: 100%;
-
-  background-image: url("/images/character.png");
-  background-repeat: no-repeat;
-  background-size: contain;
 `;
 
 const NextBtn = styled.div`

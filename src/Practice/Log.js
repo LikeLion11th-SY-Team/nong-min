@@ -178,7 +178,7 @@ const Selected = styled.div`
 
 const Info = styled.div`
   color: ${({ curstep }) => (curstep ? "#fee500" : "#fff")};
-  font-size: ${({ curstep }) => (curstep ? "2rem" : "1.6875rem")};
+  font-size: 1.6875rem;
   font-weight: 400;
 
   display: flex;
