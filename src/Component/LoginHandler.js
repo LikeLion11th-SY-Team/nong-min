@@ -12,7 +12,7 @@ function LoginHandler(props) {
   const kakaoLogin = async () => {
     await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_BaseUrl}/auth_kakao/api/kakao-login/`, 
+      url: `${process.env.REACT_APP_REDIRECT_URI}`, 
       data: { 'authorization_code': code }
       /*headers: {
         //"Content-Type": "application/json;charset=utf-8", //json형태로 데이터를 전송

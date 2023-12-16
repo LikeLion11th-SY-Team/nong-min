@@ -87,7 +87,7 @@ function NavBar() {
         </DropContainer>
       </MenuContainer>
       <LoginContainer>
-        <Login to={"/login"}>
+        <Login to={"/sign"}>
           <UserLogoContainer>
             <i className="fas fa-user-circle"></i>
           </UserLogoContainer>
