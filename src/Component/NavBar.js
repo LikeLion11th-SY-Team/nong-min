@@ -1,30 +1,29 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { getCookie } from "../API/Cookie";
+import { getCookie, removeCookie } from "../API/Cookie";
 import axios from "axios";
+import { async } from "q";
+import { AppContext } from "../App";
 
-function NavBar() {
+function NavBar(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const [hover, setHover] = useState(0);
-  const [nickname, setNickname] = useState();
-  const [login, setLogin] = useState(false);
 
   const accessToken = getCookie("accessToken");
 
-  useEffect(() => {
-    getNickname();
-  }, []);
+  const { login, setLogin } = useContext(AppContext);
 
-  async function getNickname() {
+  async function logout() {
     await axios
-      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
+      .delete(`${process.env.REACT_APP_BaseUrl}/auth/logout/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        setNickname(response.data);
-        setLogin(true);
+        console.log(response);
+        setLogin(false);
+        removeCookie("accessToken");
       })
       .catch((error) => {
         console.log(error);
@@ -86,14 +85,27 @@ function NavBar() {
           </DropDown>
         </DropContainer>
       </MenuContainer>
-      <LoginContainer>
-        <Login to={"/login"}>
-          <UserLogoContainer>
-            <i className="fas fa-user-circle"></i>
-          </UserLogoContainer>
-          <UserName>{login ? `${nickname}` : "로그인"}</UserName>
-        </Login>
-      </LoginContainer>
+      {login ? (
+        <UserContainer>
+          <Login to={"/mypage/editdata"}>
+            <UserLogoContainer>
+              <i className="fas fa-user-circle"></i>
+            </UserLogoContainer>
+            <UserName>{props.nickname}</UserName>
+          </Login>
+          <Separator>|</Separator>
+          <Logout onClick={() => logout()}>로그아웃</Logout>
+        </UserContainer>
+      ) : (
+        <UserContainer>
+          <Login to={"/sign"}>
+            <UserLogoContainer>
+              <i className="fas fa-user-circle"></i>
+            </UserLogoContainer>
+            <UserName>로그인</UserName>
+          </Login>
+        </UserContainer>
+      )}
     </NavContainer>
   );
 }
@@ -143,7 +155,7 @@ const MenuContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  width: 55%;
+  width: 48%;
   text-align: center;
   margin-left: 8rem;
   padding-top: 3rem;
@@ -182,21 +194,48 @@ const DropDownMenu = styled(Link)`
   text-decoration: none;
 `;
 
-const LoginContainer = styled.div`
+const UserContainer = styled.div`
   padding-top: 3rem;
   padding-right: 4rem;
+  display: flex;
 `;
 
 const Login = styled(Link)`
   color: #002d61;
   text-decoration: none;
-  font-size: 1.125rem;
+  text-align: center;
+  font-size: 1.25rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
-  letter-spacing: -0.00675rem;
+  letter-spacing: -0.0075rem;
 
   display: flex;
+  margin-right: 1rem;
+`;
+
+const Logout = styled.div`
+  color: #002d61;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.0075rem;
+`;
+
+const Separator = styled.div`
+  color: #002d61;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.0075rem;
+
+  margin-right: 1rem;
 `;
 
 const Li = styled.li`

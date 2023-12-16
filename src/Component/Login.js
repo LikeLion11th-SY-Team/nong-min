@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setCookie } from "../API/Cookie";
 
 import { styled } from "styled-components";
+import { AppContext } from "../App";
 
 function Login() {
+  const { login, setLogin } = useContext(AppContext);
   const [loginData, setLoginData] = useState({
     id: "",
     pw: "",
@@ -36,6 +38,8 @@ function Login() {
       setCookie("accessToken", accessToken, { path: "/" });
       setCookie("refreshToken", refreshToken, { path: "/" });
       navigation("/home");
+
+      setLogin(true);
     } catch (err) {
       if (err.response && err.response.status === 401) {
         alert("아이디와 비밀번호가 일치하지 않습니다.");
