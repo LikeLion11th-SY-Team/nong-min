@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 function SideMenu(props) {
   const location = useLocation();
@@ -8,11 +10,13 @@ function SideMenu(props) {
     navigate("./write");
   };
 
+  const { login, setLogin, nickname } = useContext(AppContext);
+
   return (
     <Container>
       <UserContainer>
         <img src="/images/person-circle.png" alt="user-circle"></img>
-        <UserName>아무개 님</UserName>
+        <UserName>{login ? nickname : "익명"} 님</UserName>
       </UserContainer>
       <MenuContainer>
         <Info>{props.op === "mypage" ? "계정 관리" : "카테고리"}</Info>
