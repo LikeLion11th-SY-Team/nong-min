@@ -7,7 +7,23 @@ import { styled } from "styled-components";
 import { AppContext } from "../App";
 
 function Login() {
-  const { login, setLogin } = useContext(AppContext);
+  const { login, setLogin, nickname, setNickname } = useContext(AppContext);
+  async function getNickname(accessToken) {
+    await axios
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        setNickname(response.data);
+        setLogin(true);
+        console.log(nickname);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLogin(false);
+      });
+  }
+
   const [loginData, setLoginData] = useState({
     id: "",
     pw: "",
@@ -40,6 +56,8 @@ function Login() {
       navigation("/home");
 
       setLogin(true);
+      getNickname(accessToken);
+      console.log(nickname);
     } catch (err) {
       if (err.response && err.response.status === 401) {
         alert("아이디와 비밀번호가 일치하지 않습니다.");

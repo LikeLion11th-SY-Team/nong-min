@@ -76,7 +76,9 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ login, setLogin, nickname }}>
+      <AppContext.Provider
+        value={{ login, setLogin, nickname, getNickname, setNickname }}
+      >
         <Router>
           <NavBar nickname={nickname} />
           <Routes>
