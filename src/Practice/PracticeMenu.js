@@ -150,8 +150,7 @@ function PracticeMenu(props) {
 }
 
 const Container = styled.div`
-  width: 16rem;
-  height: 48rem;
+  width: 15%;
 
   border-radius: 0.75rem;
   border: 1px solid #dee2e6;

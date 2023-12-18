@@ -4,6 +4,8 @@ import styled from "styled-components";
 import StatusBar from "./StatusBar";
 import Step0 from "./Step0";
 import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 function Exercise() {
   const location = useLocation();
@@ -17,7 +19,15 @@ function Exercise() {
         <ContentsContainer>
           <StatusBar step={step} />
           <Contents>
-            {step === "0" ? <Step0 /> : step === "1" ? <Step1 /> : null}
+            {step === "0" ? (
+              <Step0 />
+            ) : step === "1" ? (
+              <Step1 />
+            ) : step === "2" ? (
+              <Step2 />
+            ) : step === "3" ? (
+              <Step3 />
+            ) : null}
           </Contents>
         </ContentsContainer>
       </ItemsContainer>
@@ -26,22 +36,23 @@ function Exercise() {
 }
 
 const Container = styled.div`
-  padding: 10rem 5% 0 5%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 `;
 
 const ItemsContainer = styled.div`
+  padding-top: 10rem;
   display: flex;
   justify-content: center;
 `;
 
 const ContentsContainer = styled.div`
-  width: 80%;
+  width: 75%;
 `;
 
 const Contents = styled.div`
-  width: 70rem;
-  height: 100%;
+  width: 100%;
+  height: 92%;
 
   margin: 0 auto;
 `;

@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setCookie } from "../API/Cookie";
 
 import { styled } from "styled-components";
+import { AppContext } from "../App";
 
 function Login() {
+  const { login, setLogin, nickname, setNickname } = useContext(AppContext);
+  async function getNickname(accessToken) {
+    await axios
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/get/nickname/`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        setNickname(response.data);
+        setLogin(true);
+        console.log(nickname);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLogin(false);
+      });
+  }
+
   const [loginData, setLoginData] = useState({
     id: "",
     pw: "",
@@ -36,6 +54,10 @@ function Login() {
       setCookie("accessToken", accessToken, { path: "/" });
       setCookie("refreshToken", refreshToken, { path: "/" });
       navigation("/home");
+
+      setLogin(true);
+      getNickname(accessToken);
+      console.log(nickname);
     } catch (err) {
       if (err.response && err.response.status === 401) {
         alert("아이디와 비밀번호가 일치하지 않습니다.");
