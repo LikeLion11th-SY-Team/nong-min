@@ -1,4 +1,4 @@
-import Login from "../Component/Login";
+import { Login } from "../Component/Login";
 import { SignUp } from "../Component/SignUp";
 import { styled } from "styled-components";
 import { Route, Routes, Link } from "react-router-dom";

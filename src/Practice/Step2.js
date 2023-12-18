@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Explanation from "./Explanation";
 
-function Step2() {
+function Step2_1() {
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ function Step2() {
             info1="아이디와 비밀번호를 입력하고"
             info2="로그인 버튼을"
             info3="눌러주세요!"
+            exercise="login"
             none="1"
           />
         ) : (
@@ -47,6 +48,7 @@ function Step2() {
             info1="아이디와 비밀번호를 입력하고"
             info2="로그인 버튼을"
             info3="눌러주세요!"
+            exercise="login"
             none="1"
             opacity="1"
           />
@@ -58,13 +60,64 @@ function Step2() {
 
       <NextStepBtn
         page={page === 4}
-        onClick={() => navigate("/practice/log?step=2")}
+        onClick={() => navigate("/practice/exercise?step=2.5")}
       >
         다음 단계로
       </NextStepBtn>
       <NextStepBtn page={page === 2} onClick={() => setPage((cur) => cur + 1)}>
         연습해보기
       </NextStepBtn>
+    </Container>
+  );
+}
+
+function Step2_2() {
+  const [page, setPage] = useState(0);
+  const navigate = useNavigate();
+
+  return (
+    <Container>
+      <ContentsContainer>
+        {page === 0 ? (
+          <Explanation
+            info1="홈페이지 상단의"
+            info2="로그인 버튼을"
+            info3="눌러주세요."
+            src="/images/view_home.png"
+            none="1"
+          />
+        ) : page === 1 ? (
+          <Explanation
+            info1="그 후,"
+            info2="'카카오 로그인' 버튼을"
+            info3="눌러주세요!"
+            src="/images/view_login.png"
+            none="1"
+          />
+        ) : (
+          <Explanation
+            info1="그 후,"
+            info2="'카카오 로그인' 버튼을"
+            info3="눌러주세요!"
+            src="/images/view_login.png"
+            none="1"
+            opacity="1"
+          />
+        )}
+      </ContentsContainer>
+      <NextBtn onClick={() => setPage((cur) => cur + 1)}>
+        <i class="fas fa-forward"></i>
+      </NextBtn>
+
+      <NextStepBtn
+        page={page === 2}
+        onClick={() => navigate("/practice/log?step=2")}
+      >
+        다음 단계로
+      </NextStepBtn>
+      {/* <NextStepBtn page={page === 2} onClick={() => setPage((cur) => cur + 1)}>
+        연습해보기
+      </NextStepBtn> */}
     </Container>
   );
 }
@@ -110,4 +163,4 @@ const NextStepBtn = styled.button`
   z-index: 3;
 `;
 
-export default Step2;
+export { Step2_1, Step2_2 };

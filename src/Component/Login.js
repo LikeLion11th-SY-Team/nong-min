@@ -115,7 +115,38 @@ function Login() {
   );
 }
 
-export default Login;
+function LoginEx() {
+  function onClick(event) {
+    event.preventDefault();
+    alert("로그인을 완료하였습니다.");
+  }
+  return (
+    <LoginContainer>
+      <LoginForm>
+        <Input placeholder="아이디" />
+        <Input type="password" placeholder="비밀번호" />
+        <LoginBtn onClick={onClick}>로그인</LoginBtn>
+      </LoginForm>
+
+      <TextContainer>
+        <Hr />
+        <Text>
+          <P>또는</P>
+        </Text>
+        <Hr />
+      </TextContainer>
+
+      <a>
+        <KakaoImg
+          src="/images/kakao_login_large_wide 1.png"
+          alt="카카오 로그인 이미지"
+        />
+      </a>
+    </LoginContainer>
+  );
+}
+
+export { Login, LoginEx };
 
 const LoginContainer = styled.div`
   position: absolute;

@@ -11,7 +11,7 @@ import Community from "./View/Community";
 import Practice from "./View/Practice";
 import Exercise from "./Practice/Exercise";
 import MyPage from "./View/MyPage";
-import Login from "./Component/Login";
+import { Login } from "./Component/Login";
 import LoginHandler from "./Component/LoginHandler";
 import Landing from "./View/Landing";
 import { SignUp } from "./Component/SignUp";

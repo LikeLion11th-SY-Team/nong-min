@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { SignUpEx } from "../Component/SignUp";
+import { LoginEx } from "../Component/Login";
+import { PostFormEx } from "../Community/PostForm";
 
 function Explanation(props) {
   return (
@@ -7,6 +9,14 @@ function Explanation(props) {
       {props.exercise === "signup" ? (
         <ComponentContainer opacity={props.opacity}>
           <SignUpEx />
+        </ComponentContainer>
+      ) : props.exercise === "login" ? (
+        <ComponentContainer opacity={props.opacity}>
+          <LoginEx />
+        </ComponentContainer>
+      ) : props.exercise === "write" ? (
+        <ComponentContainer opacity={props.opacity}>
+          <PostFormEx />
         </ComponentContainer>
       ) : (
         <Img src={props.src} opacity={props.opacity} />

@@ -140,7 +140,40 @@ function PostForm() {
   );
 }
 
-export default PostForm;
+function PostFormEx() {
+  return (
+    <FormWrapper>
+      <TopContainer>
+        <MenuTitle>게시판 글쓰기</MenuTitle>
+        <BtnContainer>
+          <CancelBtn>취소</CancelBtn>
+          <SubmitBtn onClick={() => alert("등록되었습니다!")}>등록</SubmitBtn>
+        </BtnContainer>
+      </TopContainer>
+
+      <HeaderContainer>
+        <SelectBoard name="category">
+          <Option>게시판 선택</Option>
+          <Option>정보 공유 게시판</Option>
+          <Option>자유 게시판</Option>
+        </SelectBoard>
+        <Title type="text" name="title" placeholder="제목을 입력해 주세요" />
+      </HeaderContainer>
+
+      <BodyContainer>
+        <UploadImageContainer>
+          <UploadImageIcon src="images/photoUpload.png" />
+          <UploadImageText>사진 첨부하기</UploadImageText>
+          <UploadImage accept="image/*" multiple type="file" />
+        </UploadImageContainer>
+
+        <Contents name="contents" placeholder="내용을 입력해 주세요"></Contents>
+      </BodyContainer>
+    </FormWrapper>
+  );
+}
+
+export { PostForm, PostFormEx };
 
 const FormWrapper = styled.div`
   display: flex;
