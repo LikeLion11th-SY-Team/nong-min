@@ -94,7 +94,9 @@ function NavBar(props) {
             <UserName>{props.nickname}</UserName>
           </Login>
           <Separator>|</Separator>
-          <Logout onClick={() => logout()}>로그아웃</Logout>
+          <Logout to={"/home"} onClick={() => logout()}>
+            로그아웃
+          </Logout>
         </UserContainer>
       ) : (
         <UserContainer>
@@ -214,7 +216,7 @@ const Login = styled(Link)`
   margin-right: 1rem;
 `;
 
-const Logout = styled.div`
+const Logout = styled(Link)`
   color: #002d61;
   text-decoration: none;
   text-align: center;
