@@ -39,53 +39,73 @@ function MyActivity(props) {
   }, [props.menu]);
 
   return (
-    <BoardContainer>
-      <CommunityCategory>{setMenuTitle}</CommunityCategory>
-      <PostHeader>
-        <LeftContainer>
-          <PostPk></PostPk>
-          <PostTitleContainer>
-            <PostTitle>
-              <PostText>제목</PostText>
-            </PostTitle>
-          </PostTitleContainer>
-        </LeftContainer>
-        <RightContainer>
-          <PostWriter>
-            <PostText>작성자</PostText>
-          </PostWriter>
-          <PostDate>
-            <PostText>작성일</PostText>
-          </PostDate>
-          <PostLikes>
-            <PostText>좋아요</PostText>
-          </PostLikes>
-        </RightContainer>
-      </PostHeader>
-      <Hr />
-      <Posts>
-        {postList.map((post, index) => (
-          <>
-            <Link to={`/community/${post.category}/${post.pk}`} style={{ textDecoration: "none"}}>
-              <PostCard
-                key={post.pk}
-                id={index + 1}
-                title={post.title}
-                author={post.writer_nickname}
-                date={post.created_at}
-                like={post.likes_count}
-                menu={props.menu}
-              />
-            </Link>
-            <Hr/>
-          </>
-        ))}
-      </Posts>
-    </BoardContainer>
+    <Container>
+      <BoardContainer>
+        <CommunityCategory>{setMenuTitle}</CommunityCategory>
+        <PostHeader>
+          <LeftContainer>
+            <PostPk></PostPk>
+            <PostTitleContainer>
+              <PostTitle>
+                <PostText>제목</PostText>
+              </PostTitle>
+            </PostTitleContainer>
+          </LeftContainer>
+          <RightContainer>
+            <PostWriter>
+              <PostText>작성자</PostText>
+            </PostWriter>
+            <PostDate>
+              <PostText>작성일</PostText>
+            </PostDate>
+            <PostLikes>
+              <PostText>좋아요</PostText>
+            </PostLikes>
+          </RightContainer>
+        </PostHeader>
+        <Hr />
+        <Posts>
+          {postList.map((post, index) => (
+            <>
+              <Link
+                to={`/community/${post.category}/${post.pk}`}
+                style={{ textDecoration: "none" }}
+              >
+                <PostCard
+                  key={post.pk}
+                  id={index + 1}
+                  title={post.title}
+                  author={post.writer_nickname}
+                  date={post.created_at}
+                  like={post.likes_count}
+                  menu={props.menu}
+                />
+              </Link>
+              <Hr />
+            </>
+          ))}
+        </Posts>
+      </BoardContainer>
+    </Container>
   );
 }
 
 export default MyActivity;
+
+const Container = styled.div`
+  width: 61.9375rem;
+  height: 36em;
+
+  border-radius: 0.75rem;
+  border: 1px solid #dee2e6;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+`;
 
 const BoardContainer = styled.div``;
 
