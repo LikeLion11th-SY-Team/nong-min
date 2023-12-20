@@ -79,7 +79,7 @@ function PostForm() {
     } catch(err){
       alert('오류가 발생했습니다. 다시 시도해주세요.')
     }
-  };
+  }; // submit 함수 종료
 
   const cancel = (e) => {
     e.preventDefault()
