@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SideMenu from "../MyPage/SideMenu";
 import { EditData } from "../MyPage/MyPageEdit";
 
-import PostForm from "../Community/PostForm";
+import { PostForm } from "../Community/PostForm";
 
 import { Routes, Route } from "react-router-dom";
 import CommunityBoard from "../Community/CommunityBoard";

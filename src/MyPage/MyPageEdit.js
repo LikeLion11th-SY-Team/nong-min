@@ -9,12 +9,21 @@ function EditData() {
   const accessToken = getCookie("accessToken");
 
   const [user, setUser] = useState({
-    PrevId: "",
-    PrevNickname: "",
-    PrevPhone: "",
-    PrevEmail: "",
+    prevNick_name: "",
+    prevPhone_number: "",
+    prevEmail: "",
+    prevIs_social: "",
+    prevEmailId: "",
+    prevPlatformAddress: "",
   });
-  const { prevId, prevNickname, prevPhone, prevEmailId, prevAddress } = user;
+  const {
+    prevNick_name,
+    prevPhone_number,
+    prevEmail,
+    prevIs_social,
+    prevEmailId,
+    prevPlatformAddress,
+  } = user;
 
   const [nameError, setNameError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
@@ -26,15 +35,19 @@ function EditData() {
 
   async function getUser() {
     await axios
-      .get(`${process.env.REACT_APP_BaseUrl}/auth/api/userinfo/`, {
+      .get(`${process.env.REACT_APP_BaseUrl}/auth/userinfo/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
-      .then((response) => {
-        console.log(response.data);
-        /*  setRegisterData((data) => ({
-          ...data,
-          [PrevId]: res.data.id,
-        })); */
+      .then((res) => {
+        let prevEmail = res.data.email.split("@");
+        setUser(() => ({
+          ...user,
+          prevNick_name: res.data.nick_name,
+          prevPhone_number: res.data.phone_number,
+          prevEmailId: prevEmail[0],
+          prevPlatformAddress: prevEmail[1],
+          prevIs_social: res.data.is_social,
+        }));
       })
       .catch((error) => {
         console.log(error);
@@ -42,18 +55,18 @@ function EditData() {
   }
 
   /**사용자 입력 데이터 */
-  const [registerData, setRegisterData] = useState({
+  const [userInput, setUserInput] = useState({
     nick_name: "",
     phone_number: "",
     emailId: "",
     platformAddress: "",
   });
-  const { nick_name, phone_number, emailId, platformAddress } = registerData;
+  const { nick_name, phone_number, emailId, platformAddress } = userInput;
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    setRegisterData((prevData) => ({
-      ...prevData,
+    setUserInput((userInput) => ({
+      ...userInput,
       [name]: value,
     }));
   };
@@ -69,9 +82,12 @@ function EditData() {
   const handleNicknameError = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BaseUrl}/auth/api/check/nickname/`, {
-        nick_name,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_BaseUrl}/auth/api/check/nickname/`,
+        {
+          nick_name,
+        }
+      );
 
       if (res.status === 200) {
         alert("사용 가능한 닉네임입니다.");
@@ -97,11 +113,14 @@ function EditData() {
     else if (!checkNickname) return alert("닉네임 중복확인을 해주세요.");
     else {
       try {
-        const response = await axios.patch(`${process.env.REACT_APP_BaseUrl}/auth/userinfo/`, {
-          nick_name,
-          phone_number,
-          email: fullEmail,
-        });
+        const response = await axios.patch(
+          `${process.env.REACT_APP_BaseUrl}/auth/userinfo/`,
+          {
+            nick_name,
+            phone_number,
+            email: fullEmail,
+          }
+        );
 
         if (response.status === 200) alert("수정이 완료되었습니다!");
         else alert("수정에 실패했습니다. 다시 시도해주세요.");
@@ -125,8 +144,8 @@ function EditData() {
         <InputContainer>
           <Input
             name="nick_name"
-            placeholder={user.nick_name}
-            value={prevNickname}
+            placeholder={user.prevNick_name}
+            value={nick_name}
             onChange={onChange}
           />
           <CheckBtn onClick={(e) => handleNicknameError(e)}>중복 확인</CheckBtn>
@@ -139,8 +158,8 @@ function EditData() {
         </TitleContainer>
         <Input
           name="phone_number"
-          placeholder={user.phone_number}
-          value={prevPhone}
+          placeholder={user.prevPhone_number}
+          value={phone_number}
           onChange={onChange}
           onBlur={(e) => handlePhoneError(e)}
         />
@@ -148,16 +167,16 @@ function EditData() {
         <EmailContainer>
           <Input
             name="emailId"
-            placeholder={user.email}
-            value={prevEmailId}
+            placeholder={user.prevEmailId}
+            value={emailId}
             onChange={onChange}
             email="true"
           />
           <AtSign>@</AtSign>
           <Input
             name="platformAddress"
-            placeholder={""}
-            value={prevAddress}
+            placeholder={user.prevPlatformAddress}
+            value={platformAddress}
             onChange={onChange}
             email="true"
           />
