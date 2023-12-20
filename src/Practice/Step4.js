@@ -22,7 +22,7 @@ function Step4() {
             info1="게시판 선택란에서"
             info2="글을 작성하고자 하는"
             info3="게시판을 선택해주세요."
-            src="/images/view_login.png"
+            src="/images/view_community_write.png"
             none="1"
           />
         ) : page === 2 ? (
@@ -30,7 +30,7 @@ function Step4() {
             info1="제목을 입력하고"
             info2="글을 작성한 후,"
             info3="동록 버튼을 눌러주세요!"
-            src="/images/view_login.png"
+            src="/images/view_community_write.png"
             none="1"
           />
         ) : page === 3 ? (
@@ -40,20 +40,10 @@ function Step4() {
             info3="동록 버튼을 눌러주세요!"
             info4="필요에 따라"
             info5="사진을 첨부할 수 있습니다!"
-            src="/images/view_login.png"
+            src="/images/view_community_write.png"
             opacity="1"
           />
         ) : page === 4 ? (
-          <Explanation
-            info1="제목을 입력하고"
-            info2="글을 작성한 후,"
-            info3="동록 버튼을 눌러주세요!"
-            info4="필요에 따라"
-            info5="사진을 첨부할 수 있습니다!"
-            src="/images/view_login.png"
-            opacity="1"
-          />
-        ) : page === 5 ? (
           <Explanation
             info1="게시판 선택란에서"
             info2="글을 작성하고자 하는 게시판을"
@@ -61,7 +51,7 @@ function Step4() {
             exercise="write"
             none="1"
           />
-        ) : page === 6 ? (
+        ) : page === 5 ? (
           <Explanation
             info1="제목을 입력하고"
             info2="글을 작성한 후,"
@@ -85,12 +75,12 @@ function Step4() {
       </NextBtn>
 
       <NextStepBtn
-        page={page === 7}
+        page={page === 6}
         onClick={() => navigate("/practice/log?step=4")}
       >
         다음 단계로
       </NextStepBtn>
-      <NextStepBtn page={page === 4} onClick={() => setPage((cur) => cur + 1)}>
+      <NextStepBtn page={page === 3} onClick={() => setPage((cur) => cur + 1)}>
         연습해보기
       </NextStepBtn>
     </Container>

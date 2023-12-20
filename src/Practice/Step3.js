@@ -23,7 +23,7 @@ function Step3() {
             info1="커뮤니티는 크게"
             info2="정보공유 게시판 / 자유 게시판"
             info3="두 가지 게시판이 있습니다."
-            src="/images/view_login.png"
+            src="/images/view_community.png"
             none="1"
           />
         ) : page === 2 ? (
@@ -31,7 +31,7 @@ function Step3() {
             info1="게시글을 눌러 글의"
             info2="더 자세한 내용을"
             info3="확인할 수도 있습니다."
-            src="/images/view_login.png"
+            src="/images/view_community_detail.png"
             none="1"
           />
         ) : (
