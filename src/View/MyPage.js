@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SideMenu from "../MyPage/SideMenu";
 import { EditData, EditPw } from "../MyPage/MyPageEdit";
+import MyActivity from "../MyPage/MyActivity";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -13,8 +14,8 @@ function MyPage() {
         <Routes>
           <Route path="/editdata" element={<EditData />} />
           <Route path="/editpw" element={<EditPw />} />
-          <Route path="/posts" element={<EditData />} />
-          <Route path="/comments" element={<EditData />} />
+          <Route path="/posts" element={<MyActivity menu="posts" />} />
+          <Route path="/comments" element={<MyActivity menu="comments" />} />
           <Route path="/likes" element={<EditData />} />
         </Routes>
       </ItemsContainer>
