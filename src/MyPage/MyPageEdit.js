@@ -85,15 +85,17 @@ function EditData() {
       const res = await axios.post(
         `${process.env.REACT_APP_BaseUrl}/auth/api/check/nickname/`,
         {
-          nick_name,
+          nickname: nick_name,
         }
       );
 
       if (res.status === 200) {
         alert("사용 가능한 닉네임입니다.");
+        setNameError(false);
+        setCheckNickname(true);
       } else {
         setNameError(true);
-        setCheckNickname(true);
+        //setCheckNickname(true);
         alert("중복된 닉네임입니다. 다른 닉네임을 사용해주세요.");
       }
     } catch (error) {
@@ -119,12 +121,14 @@ function EditData() {
             nick_name,
             phone_number,
             email: fullEmail,
-          }
+          },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
         );
 
         if (response.status === 200) alert("수정이 완료되었습니다!");
         else alert("수정에 실패했습니다. 다시 시도해주세요.");
       } catch (error) {
+        console.log(error.response);
         alert("오류가 발생했습니다. 다시 시도해주세요.");
       }
     }
