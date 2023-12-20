@@ -127,7 +127,7 @@ const UserName = styled.div`
   height: 3rem;
 
   text-align: center;
-  font-size: 1.5625rem;
+  font-size: 1.3rem;
   font-style: normal;
   font-weight: 600;
   line-height: 144.023%; /* 2.25038rem */

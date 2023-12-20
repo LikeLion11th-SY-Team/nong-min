@@ -136,26 +136,34 @@ function Step1() {
           />
         ) : page === 14 ? (
           <Explanation
-            info1="카카오 계정이 있는 경우,"
-            info2="'카카오 로그인'을 통해서도"
-            info3="회원가입이 가능합니다."
+            info1="전화번호와 이메일을 입력한 뒤"
+            info2="가입하기 버튼을 눌러"
+            info3="회원가입을 완료하세요."
             exercise="signup"
             none="1"
           />
         ) : page === 15 ? (
           <Explanation
-            info1="카카오 계정의 아이디와"
-            info2="비밀번호를 입력하여"
-            info3="카카오 로그인을 해주세요!"
-            exercise="signup"
+            info1="카카오 계정이 있는 경우,"
+            info2="'카카오 로그인'을 통해서도"
+            info3="회원가입이 가능합니다."
+            src="/images/view_login.png"
             none="1"
           />
         ) : page === 16 ? (
           <Explanation
+            info1="카카오 계정의 아이디와"
+            info2="비밀번호를 입력하여"
+            info3="카카오 로그인을 해주세요!"
+            src="/images/view_login_kakao.png"
+            none="1"
+          />
+        ) : page === 17 ? (
+          <Explanation
             info1="필수 약관에 동의를 누르고,"
             info2="다음 단계로 넘어가면"
             info3="회원가입이 완료됩니다!"
-            exercise="signup"
+            src="/images/view_login_kakao.png"
             none="1"
           />
         ) : (
@@ -163,7 +171,7 @@ function Step1() {
             info1="필수 약관에 동의를 누르고,"
             info2="다음 단계로 넘어가면"
             info3="회원가입이 완료됩니다!"
-            exercise="signup"
+            src="/images/view_login_kakao.png"
             none="1"
             opacity="1"
           />
@@ -174,7 +182,7 @@ function Step1() {
       </NextBtn>
 
       <NextStepBtn
-        page={page === 17}
+        page={page === 18}
         onClick={() => navigate("/practice/log?step=1")}
       >
         다음 단계로

@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import Menu from "../Component/Menu";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 function Home() {
+  const { login, setLogin } = useContext(AppContext);
   return (
     <Container>
       <BkImage />
@@ -9,7 +12,9 @@ function Home() {
         <BoardContainer>
           <BoardInfo>
             우리 모두가 이어질 수 있도록
-           <BoardTitle>웹사이트 학습 기능 탑재 커뮤니티, "한걸음씩"</BoardTitle>
+            <BoardTitle>
+              웹사이트 학습 기능 탑재 커뮤니티, "한걸음씩"
+            </BoardTitle>
           </BoardInfo>
         </BoardContainer>
 
@@ -27,11 +32,19 @@ function Home() {
               infoBottom="소통의 공간을 제공합니다."
               link="/community/free"
             />
-            <Menu
-              title="계정 관리"
-              infoTop="회원가입, 로그인/로그아웃, 마이페이지"
-              link="/mypage/editdata"
-            />
+            {login ? (
+              <Menu
+                title="계정 관리"
+                infoTop="회원가입, 로그인/로그아웃, 마이페이지"
+                link="/mypage/editdata"
+              />
+            ) : (
+              <Menu
+                title="계정 관리"
+                infoTop="회원가입, 로그인/로그아웃, 마이페이지"
+                link="/sign"
+              />
+            )}
           </MenuContainer>
         </BottomContainer>
       </ItemsContainer>

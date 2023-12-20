@@ -8,8 +8,11 @@ function DetailCard(props) {
   const [nickname, setNickname] = useState();
   const [isLike, setIsLike] = useState(props);
   const [likesCount, setLikesCount] = useState(props.likes_count);
-  const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState({
+    content: '',
+    post: '',
+    commenter: '',
+  });
   const accessToken = getCookie("accessToken");
   useEffect(() => {
     getNickname();
@@ -58,7 +61,7 @@ function DetailCard(props) {
   // 댓글 불러오기
   async function getComments() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BaseUrl}/community/${props.pk}/comments/`);
+      const response = await axios.get(`${process.env.REACT_APP_BaseUrl}/${props.pk}/comments/`);
       setComments(response.data);
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -71,7 +74,6 @@ function DetailCard(props) {
     try {
       // 현재 열람 중인 게시글의 pk
       const currentPostPk = props.pk;
-
       // 좋아요 처리 요청 call, 토글 방식, 백엔드 자체 처리
       await axios.get(`${process.env.REACT_APP_BaseUrl}/${currentPostPk}/like/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -87,21 +89,37 @@ function DetailCard(props) {
   };
 
   // 댓글 작성
+  // comment 변화 감지
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setComments({
+      ...comments,
+      [name]: value,
+    });
+  };
+
   const handleCommentSubmit = async () => {
+    if(comments === '') {
+      alert('내용을 입력해주세요.')
+    }
+
+    const currentPostPk = props.pk;
+
     try {
-      const currentPostPk = props.pk;
-      const response = await axios.post(
+      const res = await axios.post(
         `${process.env.REACT_APP_BaseUrl}/community/${currentPostPk}/comments/`,
-        { text: commentText },
-        { headers: { Authorization: `Bearer ${accessToken}` } }
+        { content: comments.content, post: currentPostPk },
+        { 
+          headers: { 
+            Authorization: `Bearer ${accessToken}` 
+          },
+        }
       );
 
-      setComments((prevComments) => [...prevComments, response.data]);
-      setCommentText(""); // 댓글 작성 후 입력 필드 초기화
     } catch (error) {
       console.error("Error submitting comment:", error);
     }
-  };
+  }; //
 
   // 게시글 날짜 format 지정 함수
   const formatDate = (dateString) => {
@@ -151,7 +169,11 @@ function DetailCard(props) {
       <CommentForm>
         <CommentBox>
             <UserNickName>{nickname}</UserNickName>
-            <CommentInput placeholder="댓글을 작성하세요"></CommentInput>
+            <CommentInput 
+              type="text"
+              placeholder="댓글을 작성하세요"
+              onChange={onChange}
+            ></CommentInput>
           </CommentBox>
           <CommentSubmitBtn onClick={handleCommentSubmit}>등록</CommentSubmitBtn>
           {/* 로그인 안한 경우 댓글창 block처리

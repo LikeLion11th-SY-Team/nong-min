@@ -203,6 +203,10 @@ function SignUp() {
 }
 
 function SignUpEx() {
+  function onClick(event) {
+    event.preventDefault();
+    alert("회원가입을 완료하였습니다.");
+  }
   return (
     <SignUpContainer>
       <MenuText>회원가입 정보 입력</MenuText>
@@ -262,6 +266,7 @@ function SignUpEx() {
           이메일 주소는 아이디/비밀번호 찾기에 꼭 필요한 정보이니 입력해주시면
           도움이 됩니다.
         </EmailNotice>
+        <SubmitBtn onClick={onClick}>가입하기</SubmitBtn>
       </SignUpForm>
     </SignUpContainer>
   );
