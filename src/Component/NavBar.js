@@ -73,17 +73,41 @@ function NavBar(props) {
             </Li>
           </DropDown>
         </DropContainer>
-        <DropContainer className="userContainer">
-          <NavMenu to={"/mypage/editdata"}>계정관리</NavMenu>
-          <DropDown hover={hover}>
-            <Li>
-              <DropDownMenu to={"/mypage/editdata"}>마이페이지</DropDownMenu>
-            </Li>
-            <Li>
-              <DropDownMenu to={"/mypage/posts"}>내 활동</DropDownMenu>
-            </Li>
-          </DropDown>
-        </DropContainer>
+        {login ? (
+          <DropContainer className="userContainer">
+            <NavMenu to={"/mypage/editdata"}>계정관리</NavMenu>
+            <DropDown hover={hover}>
+              <Li>
+                <DropDownMenu to={"/mypage/editdata"}>마이페이지</DropDownMenu>
+              </Li>
+              <Li>
+                <DropDownMenu to={"/mypage/posts"}>내 활동</DropDownMenu>
+              </Li>
+            </DropDown>
+          </DropContainer>
+        ) : (
+          <DropContainer className="userContainer">
+            <NavMenu onClick={() => alert("로그인을 먼저 완료해주세요.")}>
+              계정관리
+            </NavMenu>
+            <DropDown hover={hover}>
+              <Li>
+                <DropDownMenu
+                  onClick={() => alert("로그인을 먼저 완료해주세요.")}
+                >
+                  마이페이지
+                </DropDownMenu>
+              </Li>
+              <Li>
+                <DropDownMenu
+                  onClick={() => alert("로그인을 먼저 완료해주세요.")}
+                >
+                  내 활동
+                </DropDownMenu>
+              </Li>
+            </DropDown>
+          </DropContainer>
+        )}
       </MenuContainer>
       {login ? (
         <UserContainer>
