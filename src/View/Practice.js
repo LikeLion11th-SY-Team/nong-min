@@ -15,7 +15,7 @@ function Practice() {
             전반적인 웹사이트 사용 방법을
             <br /> 단계별로 쉽게 이해할 수 있게 도와줍니다.
           </Detail>
-          <Btn onClick={() => navigate("/practice/info")}>자세히 →</Btn>
+          <Btn onClick={() => navigate("/aboutus")}>자세히 →</Btn>
         </TextContainer>
 
         <div>
@@ -23,7 +23,7 @@ function Practice() {
             <Box
               op="info"
               hover={hover}
-              onClick={() => navigate("/practice/info")}
+              onClick={() => navigate("/aboutus")}
               onMouseEnter={() => setHover(1)}
               onMouseLeave={() => setHover(0)}
             >
